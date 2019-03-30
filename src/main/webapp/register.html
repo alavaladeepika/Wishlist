@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+
+  <h2 align="center">Sign Up</h2>
+
+  <form class="form-group" action="/action_page.php">
+  	  
+  	  <div class="form-group row">
+	    <label class="col-form-label col-lg-3" for="name">Name:</label>
+	    <input class="form-control col-lg-7" maxlength = "90" id="name" placeholder="Enter your name">
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label class="col-form-label col-lg-3" for="email">Email:</label>
+	    <input type="email" class="form-control col-lg-7" maxlength = "80" id="email" placeholder="Enter your email address">
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label class="col-form-label col-lg-3" for="phn_no">Phone Number:</label>
+	    <input type="text" maxlength = "10" pattern="[1-9]{1}[0-9]{9}" class="form-control col-lg-7" id="phn_no" placeholder="Enter your 10-digit mobile number">
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label class="col-form-label col-lg-3" for="dob">Date of Birth:</label>
+	    <input type="date" class="form-control col-lg-7" id="dob">
+	  </div>
+	  
+	  <!-- 
+	  <div class="form-group row">
+	    <label class="control-label col-lg-3" for="gender">Gender:</label>
+		<select class="col-lg-3">
+		  <option class="col-lg-3">F</option>
+		  <option class="col-lg-3">M</option>
+		</select>
+	  </div> 
+	  form-control-lg 
+	  col-form-label-lg
+	  -->
+	  
+	  <div class="form-group row">
+	    <label class="col-form-label col-lg-3" id="gender">Gender:</label>
+	    <div class="form-check form-check-inline">
+		  <label class="form-check-label">
+		    <input class="form-check-input" type="radio" name="optradio" id="radio1" value="F"> F
+		  </label>
+		</div>
+		<div class="form-check form-check-inline">
+		  <label class="form-check-label">
+		    <input class="form-check-input" type="radio" name="optradio" id="radio2" value="M"> M
+		  </label>
+		</div>
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label class="col-form-label col-lg-3" for="address">Address:</label>
+	    <input class="form-control col-lg-7" maxlength = "100" id="address" placeholder="Enter your address">
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label class="col-form-label col-lg-3" for="login_id">Login id:</label>
+	    <input class="form-control col-lg-7" id="login_id" maxlength = "45" placeholder="Choose a login id">
+	  </div>
+	  
+	  <div class="form-group row">
+	    <label class="col-form-label col-lg-3" for="pwd">Password:</label>
+	    <input type="password" class="form-control col-lg-7" id="pwd" placeholder="Type password">
+	  </div>
+
+	  <div class="form-group row">
+	    <label class="col-form-label col-lg-3" for="re_pwd">Re-type Password:</label>
+        <input type="password" class="form-control col-lg-7" id="re_pwd" placeholder="Re-Type password">
+	  </div>
+	  
+	  <div class="form-check form-check-inline">
+	    <label class="form-check-label">
+	      <input id="check_tnc" class="form-check-input" type="checkbox"> 
+	      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#tncModal">
+	        I agree to the Terms and Conditions
+	      </button>
+	    </label>
+	  </div>
+  	  
+	  <div align = "center">
+	    <button id="submit" type="button" disabled="disabled" class="btn btn-primary col-lg-3">Submit</button>
+	  </div>
+  </form>	
+  
+  <!-- For the pop-up of terms and conditions -->
+  <div class="modal fade" id="tncModal">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+	  <div class="modal-content">
+	    <!-- Modal Header -->
+	    <div class="modal-header">
+		  <h4 class="modal-title">Terms and Conditions:</h4>
+		  <button type="button" class="close" data-dismiss="modal">&times;</button>
+	    </div>
+		<!-- Modal body -->
+		<div class="modal-body" align="center">
+		  <p>Your privacy is important to us, and we know that you care about how information about your order is used and shared. 
+			 We would like our international customers and customers shipping products internationally to be aware that cross-border shipments 
+			 are subject to opening and inspection by customs and/or postal authorities.</p>
+		  <p>Also, we may provide certain order, shipment, and product information, such as titles, to our international carriers, 
+			 and such information may be communicated by the carriers to customs and/or postal authorities in order to facilitate customs 
+			 clearance and comply with local laws. If the order is a gift, the package is marked "Gift," but the cost of the item is still 
+			 stated on the customs form.</p>
+		  <p>Customs authorities require the value of the gift item to be stated directly on the package.</p>
+		</div>
+		<!-- Modal footer -->
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+		</div>
+      </div>
+	</div>
+  </div>
+  
+</div>
+
+<script src="assets/js/register_actions.js"></script>
+
+</body>
+</html> 

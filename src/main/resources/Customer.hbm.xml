@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	 <class name="org.acms.WishlistService.model.Customer" table="Customer">
+	 
+      <meta attribute = "class-description">
+         This class contains the customer's details. 
+      </meta>
+      
+      <id name = "id" type = "int" column = "id">
+         <generator class="native"/>
+      </id>
+      
+      <property name = "login_id" column = "login_id" type = "string"  unique="true"/>
+      <property name = "email_id" column = "email_id" type = "string"  unique="true"/>
+      <property name = "phone_no" column = "phone_no" type = "string"  unique="true"/>
+      <property name = "dob" column = "dob" type = "string"/>
+      <property name = "address" column = "address" type = "string"/>
+      <property name ="gender" column = "gender" type="string"/>
+      <property name ="name" column = "name" type="string"/>
+	</class>
+</hibernate-mapping>
