@@ -102,6 +102,12 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.34</version>
         </dependency>
+        <!-- required for sending emails -->
+		<dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.5</version>
+		</dependency>
     </dependencies>
     <properties>
         <jersey.version>2.25</jersey.version>

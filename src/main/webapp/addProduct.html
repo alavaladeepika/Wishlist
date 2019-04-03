@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <title>Add Product</title>
+</head>
+
+<!-- Vaishali -->
+<body>
+
+  <!-- Button to Open the Modal -->
+  <button type="button" id="myBtn" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    Add Product
+  </button>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Add Product</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        
+        
+       <form class="form-horizontal" class="form-group" action="/action_page.php">
+         <div class="modal-body" align="center">
+            
+            <div class="form-group row">
+              <label class="col-form-label col-lg-3">Wishlist Type:</label>  
+              <select class="form-control col-lg-7" name="wishlist" id="wishlist_type">
+                <option value="select">Select</option>
+                <option value="new">New Wishlist</option>
+                <option value="old">Existing Wishlist</option>
+              </select> 
+            </div>
+      
+            <div class="form-group row" id="new_wishlist_name">
+              <label class="col-form-label col-lg-3">Wishlist Name:</label>
+              <input class="form-control col-lg-7" type="text" name="name" id="name">
+            </div>
+      
+            <div class="form-group row" id="existing_wishlist">
+              <label class="col-form-label col-lg-3">Select Wishlist:</label>
+              <select class="form-control col-lg-7" name="wishlist" id="selected_wishlist">
+               </select> 
+            </div>
+      
+            <div class="form-group row">
+              <label class="col-form-label col-lg-3">Quantity:</label>
+              <input class="form-control col-lg-7" type="number" name="quantity" min="1" max="10" id="quantity">
+            </div>
+
+            <div class="form-group row">
+              <label class="col-form-label col-lg-3">Address:</label>
+              <textarea class="form-control col-lg-7" name="message" rows="1" cols="50" id="address"></textarea> 
+            </div>
+
+            <div class="form-group row">
+              <label class="col-form-label col-lg-3">Reason:</label>
+              <textarea class="form-control col-lg-7" name="message" rows="1" cols="50" id="reason"></textarea>
+            </div>
+
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button id="add_product_btn" type="button" class="btn btn-danger" data-dismiss="modal">Add Product</button>
+          </div>
+    
+        </form> 
+        
+      </div>
+    </div>
+  </div>
+  
+
+<script src="assets/js/addProduct.js" > </script>
+
+</body>
+</html>

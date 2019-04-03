@@ -8,9 +8,7 @@
          This class contains the customer login details. 
       </meta>
       
-      <id name = "login_id" type = "string" column = "login_id">
-         <generator class="native"/>
-      </id>
+      <id name = "login_id" type = "string" column = "login_id"></id>
       
       <property name = "password" column = "password" type = "string"/>
 	</class>

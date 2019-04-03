@@ -29,6 +29,16 @@ public class HibernateDAO<E> {
 		return id;
 	}
 	
+	public void addNew(E entity)
+	{
+		session = SessionUtil.getSession();
+		tx = session.beginTransaction();
+		session.flush();
+		session.save(entity);
+		tx.commit();
+		session.close();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public E find(String entity_name, String param, String val)
 	{
@@ -79,6 +89,21 @@ public class HibernateDAO<E> {
 	
 	@SuppressWarnings("unchecked")
 	public List<E> findAll(String entity_name, String param, int val)
+	{
+		session = SessionUtil.getSession();
+		session.flush();
+		String hql = "from "+ entity_name + " where "+param+" = :val";
+		Query query = session.createQuery(hql);
+		query.setParameter("val", val);
+		List<E> entity = query.list();
+		session.clear();
+		session.flush();
+		session.close();
+		return entity;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<E> findAll(String entity_name, String param, String val)
 	{
 		session = SessionUtil.getSession();
 		session.flush();

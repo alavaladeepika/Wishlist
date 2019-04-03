@@ -7,7 +7,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <title>Register</title>
+
 </head>
+
+<!-- Deepika -->
+
 <body>
 
 <div class="container">
@@ -18,22 +24,22 @@
   	  
   	  <div class="form-group row">
 	    <label class="col-form-label col-lg-3" for="name">Name:</label>
-	    <input class="form-control col-lg-7" maxlength = "90" id="name" placeholder="Enter your name">
+	    <input class="form-control col-lg-7" maxlength = "90" id="name" placeholder="Enter your name" required>
 	  </div>
 	  
 	  <div class="form-group row">
 	    <label class="col-form-label col-lg-3" for="email">Email:</label>
-	    <input type="email" class="form-control col-lg-7" maxlength = "80" id="email" placeholder="Enter your email address">
+	    <input type="email" class="form-control col-lg-7" maxlength = "80" id="email" placeholder="Enter your email address" required>
 	  </div>
 	  
 	  <div class="form-group row">
 	    <label class="col-form-label col-lg-3" for="phn_no">Phone Number:</label>
-	    <input type="text" maxlength = "10" pattern="[1-9]{1}[0-9]{9}" class="form-control col-lg-7" id="phn_no" placeholder="Enter your 10-digit mobile number">
+	    <input type="text" maxlength = "10" pattern="[1-9]{1}[0-9]{9}" class="form-control col-lg-7" id="phn_no" placeholder="Enter your 10-digit mobile number" required>
 	  </div>
 	  
 	  <div class="form-group row">
 	    <label class="col-form-label col-lg-3" for="dob">Date of Birth:</label>
-	    <input type="date" class="form-control col-lg-7" id="dob">
+	    <input type="date" class="form-control col-lg-7" id="dob" required>
 	  </div>
 	  
 	  <!-- 
@@ -60,26 +66,31 @@
 		    <input class="form-check-input" type="radio" name="optradio" id="radio2" value="M"> M
 		  </label>
 		</div>
+		<div class="form-check form-check-inline">
+		  <label class="form-check-label">
+		    <input class="form-check-input" type="radio" name="optradio" id="radio3" value="others"> Others
+		  </label>
+		</div>
 	  </div>
 	  
 	  <div class="form-group row">
 	    <label class="col-form-label col-lg-3" for="address">Address:</label>
-	    <input class="form-control col-lg-7" maxlength = "100" id="address" placeholder="Enter your address">
+	    <input class="form-control col-lg-7" maxlength = "100" id="address" placeholder="Enter your address" required>
 	  </div>
 	  
 	  <div class="form-group row">
 	    <label class="col-form-label col-lg-3" for="login_id">Login id:</label>
-	    <input class="form-control col-lg-7" id="login_id" maxlength = "45" placeholder="Choose a login id">
+	    <input class="form-control col-lg-7" id="login_id" maxlength = "45" placeholder="Choose a login id" required>
 	  </div>
 	  
 	  <div class="form-group row">
 	    <label class="col-form-label col-lg-3" for="pwd">Password:</label>
-	    <input type="password" class="form-control col-lg-7" id="pwd" placeholder="Type password">
+	    <input type="password" class="form-control col-lg-7" id="pwd" placeholder="Type password" required>
 	  </div>
 
 	  <div class="form-group row">
 	    <label class="col-form-label col-lg-3" for="re_pwd">Re-type Password:</label>
-        <input type="password" class="form-control col-lg-7" id="re_pwd" placeholder="Re-Type password">
+        <input type="password" class="form-control col-lg-7" id="re_pwd" placeholder="Re-Type password" required>
 	  </div>
 	  
 	  <div class="form-check form-check-inline">

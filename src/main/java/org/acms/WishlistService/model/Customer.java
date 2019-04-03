@@ -40,10 +40,10 @@ public class Customer {
 	public void setPhone_no(String phone_no) {
 		this.phone_no = phone_no;
 	}
-	public String getDOB() {
+	public String getDob() {
 		return dob;
 	}
-	public void setDOB(String dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 	public String getAddress() {

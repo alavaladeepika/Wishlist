@@ -1,5 +1,5 @@
 /**
- * 
+ * Deepika
  */
 jQuery(document).ready(function($){
 	var result = true;
@@ -19,6 +19,9 @@ jQuery(document).ready(function($){
 	    else if($("#radio2").is(':checked')){
 	    	return "M";
 	    }
+	    else if($("#radio3").is(':checked')){
+	    	return "others";
+	    }
 	    else{
 	    	return null;
 	    }
@@ -35,7 +38,7 @@ jQuery(document).ready(function($){
 		var pwd = $("#pwd").val();
 		var re_pwd = $("#re_pwd").val();
 
-		isValidName(name);
+		/*isValidName(name);
 		console.log(result.toString());
 		isValidEmail(email);
 		console.log(result.toString());
@@ -50,37 +53,58 @@ jQuery(document).ready(function($){
 		isValidLoginID(login_id);
 		console.log(result.toString());
 		isValidPwd(pwd, re_pwd);
-		console.log(result.toString());
+		console.log(result.toString());*/
 		
-		if(result){
-			var req_data = {
-					"name" : name,
-					"email" : email,
-					"phn_no" : phn_no,
-					"dob" : dob,
-					"gender" : gender,
-					"address" : address,
-					"login_id" : login_id,
-					"password" : pwd,
-			};
-			//console.log(req_data);
-			$.ajax({url:"http://localhost:8080/wishlist_service/webapi/myresource/registerUser", type:"POST",
-				data: JSON.stringify(req_data),
-				dataType: "json",
-			 	async: true,
-			 	
-				success: function(data) {
-
-					if(data.status=="success"){
-						//console.log(data);
-						alert("Successfully registered!!");
-					}
-				},
-				error: function(data) {
-					alert("failed");
-				}
-			});
+		var customer = {
+			"name" : name,
+			"email_id" : email,
+			"phone_no" : phn_no,
+			"dob" : dob,
+			"gender" : gender,
+			"address" : address,
+			"login_id" : login_id,
+			"password" : pwd,
+		};
+		
+		var login = {
+			"login_id" : login_id,
+			"password" : pwd,
+		};
+		
+		var req_data = {
+			"login" : login,
+			"customer" : customer,
 		}
+		
+		console.log(customer);
+		var url = "http://localhost:8080/WishlistService/webapi/customer/registerUser";
+		$.ajax({
+			type : 'POST',
+			contentType : 'application/json',
+			url : url,
+			data: JSON.stringify(customer),
+			success: function(status) {
+				if(status=="success"){
+					//console.log(data);
+					alert("Successfully registered!!");
+				}
+				else if(status == "login_id"){
+					alert("Login ID already exists, choose different one!");
+				}
+				else if(status=="email"){
+					alert("Email id already exists, choose different one!");
+				}
+				else if(status=="phone_no"){
+					alert("Phone Number already exists, choose different one!");
+				}
+				else{
+					alert("Something went wrong!");
+				}
+			},
+			error: function(data) {
+				alert("Failed!");
+			}
+		});
 		
 	});
 	

@@ -9,23 +9,24 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   
   <title>Wishlist</title>
-
+  
 </head>
 
-<!-- Deepika -->
+<!-- Vaishali -->
 
 <body>
 
+<!-- 
 <div class="container">
   <h2 id="wname" align="center">Alavala's Wish List</h2>
 
-  <!-- <div id="prod_details" class="col-lg-12" style="border: 5px solid #eee">
+  <div class="col-lg-12" style="border: 5px solid #eee">
     
     <div class="col-lg-4" style="padding: 5px">
-      <img id="prod_img" src="images/catalog/book.jpg" alt="Card image" style="width:200px;height:200px;float:left" />
+      <img src="images/catalog/book.jpg" alt="Card image" style="width:200px;height:200px;float:left" />
     </div>
    
-    <div>
+     <div>
       <form class="form-group" action="/action_page.php">
 	    <div class="form-group" style="margin-left:250px">
 	      <div class="form-group row" style="margin-bottom: 1px">
@@ -57,29 +58,28 @@
 	    </div>
       </form>
     </div>
-    
   </div>
-  -->
-  
+   -->
   <div class="form-group row" align = "center">
-    <button id="delete" type="button" class="btn btn-danger btn-lg" style="margin-left:320px; margin-right:50px">Delete Wish List</button>
-	<button id="share" type="button" class="btn btn-success btn-lg">Share Wish List</button>
+	<button id="buy" type="button" class="btn btn-success btn-lg">Buy Wish List</button>
   </div>
   
-  <!-- For the pop-up of edit details -->
-  <!-- <div class="modal fade" id="editModal">
+  <!-- For the pop-up of edit details 
+  <div class="modal fade" id="editModal">
 	<div class="modal-dialog modal-lg modal-dialog-centered">
 	  <div class="modal-content">
+	     Modal Header
 	    <div class="modal-header">
 		  <h4 class="modal-title">Edit Details:</h4>
 		  <button type="button" class="close" data-dismiss="modal">&times;</button>
 	    </div>
+		Modal body 
 		<div class="modal-body" align="center">
 		  <form class="form-group" action="/action_page.php">
 	  	  
 	  	    <div class="form-group row">
 		      <label class="col-form-label col-lg-3" for="qt">Quantity:</label>
-		      <input class="form-control col-lg-7" id="edit_qt" type="number" value="100">
+		      <input class="form-control col-lg-7" id="edit_qt" type="number" value="3">
 		    </div>
 		  
 		    <div class="form-group row">
@@ -94,6 +94,7 @@
 		  </form>
 		</div>
 		
+		 Modal footer 
 		<div class="modal-footer">
 		  <button id="save" type="button" class="col-lg-3 btn btn-success btn-lg" data-dismiss="modal">Save Details</button>
 		</div>
@@ -102,10 +103,7 @@
 	</div>
   </div>
   -->
-  
-</div>
 
-<script src="assets/js/creatorwishlist_actions.js"></script>
-
+<script src="assets/js/sharedWishlist.js"></script>
 </body>
 </html>
