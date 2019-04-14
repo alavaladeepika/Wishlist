@@ -15,6 +15,7 @@
       <property name = "product_id" column = "product_id" type = "int"/>
       <property name = "wishlist_id" column = "wishlist_id" type = "int"/>
       <property name = "quantity" column = "quantity" type = "int"/>
+      <property name = "remaining_qty" column = "remaining_qty" type = "int"/>
       <property name = "address" column = "address" type = "string"/>
       <property name = "reason" column = "reason" type = "string"/>
      

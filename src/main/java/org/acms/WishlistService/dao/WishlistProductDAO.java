@@ -10,6 +10,11 @@ public class WishlistProductDAO extends HibernateDAO<WishlistProduct> {
 	
 	String entity="WishlistProduct";
 
+	//Get the wishlisted products given the id(Deepika)
+	public WishlistProduct getWishlistProductByID(int id) {
+		return super.find(entity, "id", id);
+	}
+	
 	//Get the wishlisted products given the wishlist id(Deepika/Vaishali)
 	public List<WishlistProduct> getWishlistProductsByWishlistID(int id) {
 		return super.findAll(entity, "wishlist_id", id);
@@ -60,6 +65,33 @@ public class WishlistProductDAO extends HibernateDAO<WishlistProduct> {
 			e.printStackTrace();
 			return -1;
 		}
+	}
+    
+    //Reduce remaining quantity(Deepika)
+    public int reduceRemainingQty(int wishlist_id, int product_id, int qty) {
+		WishlistProduct wproduct = super.find(entity, "wishlist_id", wishlist_id, "product_id", product_id);
+		wproduct.setRemaining_qty(wproduct.getRemaining_qty() - qty);
+		
+		List<Field> fields = new ArrayList<Field>();
+		Field field;
+		try {
+			field = wproduct.getClass().getDeclaredField("remaining_qty");
+			field.setAccessible(true);
+			fields.add(field);
+			
+			if(super.update(wproduct, "id", wproduct.getId(), fields)==1)
+				return 1;
+			
+		} 
+		catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return -1;
 	}
 
 }

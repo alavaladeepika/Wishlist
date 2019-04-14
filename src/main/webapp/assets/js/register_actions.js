@@ -2,12 +2,39 @@
  * Deepika
  */
 jQuery(document).ready(function($){
-	var result = true;
+	function removeWarnings(){
+		$("#warning_name").hide();
+		$("#warning_email").hide();
+		$("#email_exists").hide();
+		$("#warning_phn").hide();
+		$("#phn_exists").hide();
+		$("#warning_dob").hide();
+		$("#warning_gender").hide();
+		$("#login_exists").hide();
+		$("#warning_login").hide();
+		$("#warning_pwd").hide();
+		$("#warning_repwd").hide();
+		$("#wrong_repwd").hide();
+		$("#warning_check").show();
+	}
+	
+	removeWarnings();
+	
+	$("body").on("click","#logo_img",function(){
+		window.location = "catalog.html";
+	});
+	
+	$("body").on("click","#signin",function(){
+		window.location = "login.html";
+	});
+	
 	$('#check_tnc').click(function() {
         if ($("#check_tnc").is(':checked')) {
+        	$("#warning_check").hide();
         	$('#submit').removeAttr('disabled');
         } 
         else {
+        	$("#warning_check").show();
         	$('#submit').attr('disabled', 'disabled');
         }
     });
@@ -28,32 +55,83 @@ jQuery(document).ready(function($){
 	}
 	
 	$('#submit').click(function(){
+		isValid();
+	});
+	
+	//Check if everything is non-empty
+	function isValid(){
+		var i = 0;
+		if(!$("#name").val()){
+			$("#name").focus();
+			$("#warning_name").show();
+			i+=1;
+		}
+		if(!$("#email").val() && $("#email").val().search('@')==-1){
+			$("#email").focus();
+			$("#warning_email").show();
+			$("#email_exists").hide();
+			i+=1;
+		}
+		if(!$("#phn_no").val() && $("#phn_no").val().length!=10){
+			$("#phn_no").focus();
+			$("#warning_phn").show();
+			$("#phn_exists").hide();
+			i+=1;
+		}
+		if(!$("#dob").val()){
+			$("#dob").focus();
+			$("#warning_dob").show();
+			i+=1;
+		}
+		if(!getGender()){
+			$("#radio1").focus();
+			$("#radio2").focus();
+			$("#warning_gender").show();
+			i+=1;
+		}
+		if(!$("#login_id").val()){
+			$("#login_id").focus();
+			$("#warning_login").show();
+			$("#login_exists").hide();
+			i+=1;
+		}
+		if(!$("#pwd").val() && $("#pwd").val().length<4){
+			$("#pwd").focus();
+			$("#warning_pwd").show();
+			i+=1;
+		}
+		if(!$("#re_pwd").val() && $("#re_pwd").val().length<4){
+			$("#re_pwd").focus();
+			$("#warning_repwd").show();
+			$("#wrong_repwd").hide();
+			i+=1;
+		}
+		if($("#pwd").val()!=$("#re_pwd").val()){
+			$("#pwd").focus();
+			$("#re_pwd").focus();
+			$("#wrong_repwd").show();
+			$("#warning_repwd").hide();
+			i+=1;
+		}
+		if(i==0){
+			validate();
+		}
+	}
+	
+	//Validate email, phone number, login id
+	//If valid enter it to database
+	function validate(){
+		removeWarnings();
+		$("#warning_check").hide();
+		
 		var name = $("#name").val();
 		var email = $("#email").val();
 		var phn_no = $("#phn_no").val();
 		var dob = $("#dob").val();
 		var gender = getGender();
-		var address = $("#address").val();
 		var login_id = $("#login_id").val();
 		var pwd = $("#pwd").val();
 		var re_pwd = $("#re_pwd").val();
-
-		/*isValidName(name);
-		console.log(result.toString());
-		isValidEmail(email);
-		console.log(result.toString());
-		isValidPhoneNo(phn_no); 
-		console.log(result.toString());
-		isValidDOB(dob);
-		console.log(result.toString());
-		isValidGender(gender);
-		console.log(result.toString());
-		isValidAddress(address);
-		console.log(result.toString());
-		isValidLoginID(login_id);
-		console.log(result.toString());
-		isValidPwd(pwd, re_pwd);
-		console.log(result.toString());*/
 		
 		var customer = {
 			"name" : name,
@@ -61,7 +139,6 @@ jQuery(document).ready(function($){
 			"phone_no" : phn_no,
 			"dob" : dob,
 			"gender" : gender,
-			"address" : address,
 			"login_id" : login_id,
 			"password" : pwd,
 		};
@@ -76,7 +153,7 @@ jQuery(document).ready(function($){
 			"customer" : customer,
 		}
 		
-		console.log(customer);
+		//console.log(customer);
 		var url = "http://localhost:8080/WishlistService/webapi/customer/registerUser";
 		$.ajax({
 			type : 'POST',
@@ -86,16 +163,25 @@ jQuery(document).ready(function($){
 			success: function(status) {
 				if(status=="success"){
 					//console.log(data);
+					setCookie("login_id", login_id, 1);
 					alert("Successfully registered!!");
+					console.log(checkCookie("login_id"));
+					window.location = "catalog.html";
 				}
 				else if(status == "login_id"){
-					alert("Login ID already exists, choose different one!");
+					//alert("Login ID already exists, choose different one!");
+					$("#login_id").focus();
+					$("#login_exists").show();
 				}
 				else if(status=="email"){
-					alert("Email id already exists, choose different one!");
+					//alert("Email id already exists, choose different one!");
+					$("#email").focus();
+					$("#email_exists").show();
 				}
 				else if(status=="phone_no"){
-					alert("Phone Number already exists, choose different one!");
+					//alert("Phone Number already exists, choose different one!");
+					$("#phn_no").focus();
+					$("#phn_exists").show();
 				}
 				else{
 					alert("Something went wrong!");
@@ -105,175 +191,6 @@ jQuery(document).ready(function($){
 				alert("Failed!");
 			}
 		});
-		
-	});
-	
-	function isValidName(name){
-		if(!name){
-			$("#name").focus();
-			result = result && false;
-		}
-		else{
-			result = result && true;
-		}
 	}
 	
-	function isValidEmail(email){
-		if(!email){
-			$("#email").focus();
-			result = result && false;
-		}
-		else{
-			var req_data = {
-					"email" : email,
-			};
-			$.ajax({url:"http://localhost:8080/wishlist_service/webapi/myresource/checkEmail", type:"POST",
-				data: JSON.stringify(req_data),
-				dataType: "json",
-			 	async: true,
-			 	
-				success: function(data) {
-
-					if(data.status=="fail"){
-						//console.log(data);
-						alert("Email is already in use");
-						$("#email").focus();
-						changeResult(false);
-					}
-					else if(data.status=="success"){
-						result = result && true;
-					}
-				},
-				error: function(data) {
-					alert("failed");
-					result = result && false;
-				}
-			});
-		}
-	}
-	
-	function changeResult(b){
-		result = b;
-	}
-	
-	function isValidPhoneNo(phn_no){
-		//console.log(phn_no);
-		if(!phn_no){
-			$("#phn_no").focus();
-			result = result && false;
-		}
-		else{
-			var req_data = {
-				"phn_no" : phn_no,
-			};
-			//console.log(req_data);
-			$.ajax({url:"http://localhost:8080/wishlist_service/webapi/myresource/checkPhoneNo", type:"POST",
-				data: JSON.stringify(req_data),
-				dataType: "json",
-			 	async: true,
-			 	
-				success: function(data) {
-
-					if(data.status=="fail"){
-						//console.log(data);
-						alert("Phone number is already in use");
-						$("#phn_no").focus();
-						result = result && false;
-					}
-					else if(data.status=="success"){
-						result = result && true;
-					}
-				},
-				error: function(data) {
-					alert("failed");
-					result = result && false;
-				}
-			});
-		}
-	}
-	
-	function isValidDOB(dob){
-		if(!dob){
-			$("#dob").focus();
-			result = result && false;
-		}
-		else{
-			result = result && true;
-		}
-	}
-	
-	function isValidGender(gender){
-		if(!gender){
-			$("#radio1").focus();
-			$("#radio2").focus();
-			result = result && false;
-		}
-		else{
-			result = result && true;
-		}
-	}
-	
-	function isValidAddress(address){
-		if(!address){
-			$("#address").focus();
-			result = result && false;
-		}
-		else{
-			result = result && true;
-		}
-	}
-	
-	function isValidLoginID(login_id){
-		if(!login_id){
-			$("#login_id").focus();
-			result = result && false;
-		}
-		else{
-			var req_data = {
-				"login_id" : login_id,
-			};
-			$.ajax({url:"http://localhost:8080/wishlist_service/webapi/myresource/checkUser", type:"POST",
-				data: JSON.stringify(req_data),
-				dataType: "json",
-			 	async: true,
-			 	
-				success: function(data) {
-
-					if(data.status=="fail"){
-						//console.log(data);
-						alert("Login id is already taken");
-						$("#login_id").focus();
-						result = result && false;
-					}
-					else if(data.status=="success"){
-						result = result && true;
-					}
-				},
-				error: function(data) {
-					alert("failed");
-					result = result && false;
-				}
-			});
-		}
-	}
-	
-	function isValidPwd(pwd, re_pwd){
-		if(!pwd && pwd.length<4){
-			$("#pwd").focus();
-			result = result && false;
-		}
-		if(!re_pwd && re_pwd.length<4){
-			$("#re_pwd").focus();
-			result = result && false;
-		}
-		else if(pwd==re_pwd){
-			result = result && true;
-		}
-		else{
-			alert("Passwords doesnot match");
-			$("#pwd").focus();
-			$("#re_pwd").focus();
-			result = result && false;
-		}
-	}
 });

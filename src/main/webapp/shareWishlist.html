@@ -1,28 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="assets/css/addProductModal.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-  <title>Share</title>
+  
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="shortcut icon" href="images/Extras/logo.jpg">
 
 </head>
 
 <!-- Vaishali -->
 
 <body>
-
-  <div class="container">
- 
-    <!-- Button to Open the Modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-      Share Wishlist
-    </button>
 
     <!-- The Modal -->
     <div class="modal fade" id="myModal">
@@ -31,20 +24,23 @@
       
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title">Share Wishlist</h4>
+            <h4 class="modal-title">Share Wish List</h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
         
           <!-- Modal body -->
           <form class="form-horizontal" class="form-group" action="/action_page.php">
             <div class="modal-body">
-              <label for='reason'>Fullfiller's Email Id:</label>
-		          <input type='text'  maxlength='50' id='email_id' placeholder="abc@gmail.com">
+              <div class='row'>
+	              <label class='col-lg-5' for='reason'>Fullfiller's Email ID:</label>
+			      <input type='text' maxlength='50' id='email_id' placeholder="abc@gmail.com">
+			  </div>
+			  <div align='center' id="warning" class="warning" style='margin-top: 20px;'>The email doesn't belong to any registered user.</div>
             </div>
         
             <!-- Modal footer -->
             <div class="modal-footer">
-              <button id='share' type="button" class="btn btn-danger" data-dismiss="modal">Share</button>
+              <button id='share_wishlist' type="button" class="btn btn-success">Share</button>
             </div>
         
           </form>
@@ -52,8 +48,9 @@
         </div>
     </div>
   </div>
-</div>
+
+</body>
 
 <script src="assets/js/shareWishlist.js"></script>
-</body>
+
 </html>

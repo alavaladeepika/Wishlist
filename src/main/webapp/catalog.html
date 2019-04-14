@@ -1,174 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Home</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="shortcut icon" href="images/Extras/logo.jpg">
+  <title>Home</title>
+  
   <!-- Manisha -->
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
-    }
-    
-  .carousel-inner img {
-      width: 100%; /* Set width to 100% */
-      margin: auto;
-      min-height:200px;
-  }
-.button5 {background-color: #555555;color: white;}
-  /* Hide the carousel text when the screen is less than 600 pixels wide */
-  @media (max-width: 600px) {
-    .carousel-caption {
-      display: none; 
-    }
-  }
-  .add-to-cart{border:1px solid #e5e5e5;display:inline-block;padding:10px 20px;color:#888;font-weight:600;font-size:14px;border-radius:4px;transition:all .3s}
-.add-to-cart:hover{border:1px solid transparent;background:#16a085;color:#fff}
-  </style>
+  
 </head>
-<body>
+<body style = "background-color: rgba(128,128,128,0.1);">
 
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">Logo</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">My WishLists</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+	<div id = "header"></div>
+	
+	<div class = "card" style="border-radius: 0 !important;">
+	   <h3 align='center'>Catalog</h3>
+	</div>
+	
+	<div class = "card" style="margin-left: 151px; margin-right: 151px; border-radius: 0 !important;">
+	   <div id="catalog" class="form-inline"></div>
+	</div>
+	
+	<div id="addProduct"></div>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-<!--      <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-    </ol>
--->
-    <!-- Wrapper for slides -->
-<!--    <div class="carousel-inner" role="listbox">
-      <div class="item active">
-        <img src="images/p1.jpg" style="height:50%" alt="Image">
-        <div class="carousel-caption">
-          <h3>Sell $</h3>
-          <p>Money Money.</p>
-        </div>      
-      </div>
-
-      <div class="item">
-        <img src="https://placehold.it/1200x400?text=Another Image Maybe" alt="Image">
-        <div class="carousel-caption">
-          <h3>More Sell $</h3>
-          <p>Lorem ipsum...</p>
-        </div>      
-      </div>
-    </div>
--->
-    <!-- Left and right controls 
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-</div>
--->
-
-<div class="container text-center">    
-  <h3>Products</h3><br>
-</div>
-
-<!--  <div class="row">
-    <div class="col-sm-4">
-      <img src="images/p1.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <h3 class="title">
-      	 <a href="#">Women's Top</a></h3>
-         <div class="price">Rs 600.00         
-         </div>
-         <button type="submit" class="btn add-to-cart btn-block">Add to Wishlist</button>
-    </div>
-    
-    <div class="col-sm-4"> 
-      <img src="images/p3.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <h3 class="title">
-      	 <a href="#">Office Bag</a></h3>
-         <div class="price">Rs 1000.00         
-         </div>
-         <button type="submit" class="btn add-to-cart btn-block">Add to Wishlist</button>   
-    </div>
-    
-    <div class="col-sm-4"> 
-      <img src="images/p4.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <h3 class="title">
-      	 <a href="#">Spectacles</a></h3>
-         <div class="price">Rs 800.00         
-         </div>
-         <button type="submit" class="btn add-to-cart btn-block">Add to Wishlist</button>
-    </div>
-    <br>
-    </div>
-    <div class="row">
-    <div class="col-sm-4"> 
-      <img src="images/p6.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <h3 class="title">
-      	 <a href="#">Sneakers</a></h3>
-         <div class="price">Rs 2000.00         
-         </div>
-         <button type="submit" class="btn add-to-cart btn-block">Add to Wishlist</button>   
-    </div>
-
-    <div class="col-sm-4"> 
-      <img src="images/p12.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <h3 class="title">
-      	 <a href="#">Women's Skirt</a></h3>
-         <div class="price">Rs 800.00         
-         </div>
-         <button type="submit" class="btn add-to-cart btn-block">Add to Wishlist</button>
-    </div>
-
-    <div class="col-sm-4"> 
-      <img src="images/redJacket.jpg" class="img-responsive" style="width:100%" alt="Image">
-      <h3 class="title">
-      	 <a href="#">Red Jacket</a></h3>
-         <div class="price">Rs 3000.00         
-         </div>
-         <button type="submit" class="btn add-to-cart btn-block" solid="#fff"">Add to Wishlist</button>   
-    </div>
-
-  </div>
-</div><br>
-
-<footer class="container-fluid text-center">
-  <button type="submit" id='show' class="btn button5 btn-block" solid="#fff">Back to Top</button>   
-</footer>
--->
-<script src="assets/js/catalog_actions.js"></script>
 </body>
+
+<script src="assets/js/cookie.js"></script>
+<script src="assets/js/catalog_actions.js"></script>
+
 </html>

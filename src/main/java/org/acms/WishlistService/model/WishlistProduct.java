@@ -6,6 +6,7 @@ public class WishlistProduct {
 	private int product_id;
 	private int wishlist_id;
 	private int quantity;
+	private int remaining_qty;
 	private String address;
 	private String reason;
 	
@@ -32,6 +33,13 @@ public class WishlistProduct {
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	public int getRemaining_qty() {
+		return remaining_qty;
+	}
+
+	public void setRemaining_qty(int remaining_qty) {
+		this.remaining_qty = remaining_qty;
 	}
 	public String getAddress() {
 		return address;

@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import org.acms.WishlistService.dao.CatalogDAO;
+import org.acms.WishlistService.dao.CustomerDAO;
 import org.acms.WishlistService.dao.WishlistDAO;
 import org.acms.WishlistService.dao.WishlistFullfillersDAO;
 import org.acms.WishlistService.dao.WishlistProductDAO;
@@ -23,18 +24,12 @@ import org.acms.WishlistService.model.Wishlist;
 import org.acms.WishlistService.model.WishlistFullfillers;
 import org.acms.WishlistService.model.WishlistProduct;
 
-//imports required to send email to fullfiller
-import java.util.*;  
-import javax.mail.*;  
-import javax.mail.internet.*;  
-
 @Path("/creator")
 public class CreatorServices {
 	
 	// API to get all the wishlists shared with the user. (Deepika)
 	@POST
 	@Path("/getCreatorWishlistDetails/{id}")
-	@Consumes("application/json")
 	@Produces("application/json")
 	public String getCreatorWishlistDetails(@PathParam("id") int wishlist_id) throws JSONException{
 		WishlistDAO wdao = new WishlistDAO();
@@ -43,8 +38,11 @@ public class CreatorServices {
 		
 		JSONArray items = new JSONArray();
 		
+		//Products in wishlist
 		WishlistProductDAO wpdao = new WishlistProductDAO();
 		List<WishlistProduct> wproducts = wpdao.getWishlistProductsByWishlistID(wishlist_id);
+		
+		CatalogDAO cdao = new CatalogDAO();
 		
 		if(wproducts!=null) {
 			for(int i=0;i<wproducts.size();i++) {
@@ -54,10 +52,10 @@ public class CreatorServices {
 				item.put("id", wproducts.get(i).getId());
 				//item.put("product_id", wproducts.get(i).getProduct_id());
 				item.put("quantity", wproducts.get(i).getQuantity());
+				item.put("fullfilled_qty", wproducts.get(i).getQuantity()-wproducts.get(i).getRemaining_qty());
 				item.put("address", wproducts.get(i).getAddress());
 				item.put("reason", wproducts.get(i).getReason());
 				
-				CatalogDAO cdao = new CatalogDAO();
 				Catalog product = cdao.getProductByID(wproducts.get(i).getProduct_id());
 				
 				item.put("product_name", product.getProduct_name());
@@ -76,9 +74,9 @@ public class CreatorServices {
 	
 	// API to update details in the wishlist of the creator (Deepika)
 	@POST
-	@Path("/updateWishlist")
+	@Path("/updateWishlist/{id}")
 	@Consumes("application/json")
-	public String updateWishlist(WishlistProduct wishlist_product){
+	public String updateWishlist(@PathParam("id") String creator, WishlistProduct wishlist_product){
 		WishlistProductDAO dao = new WishlistProductDAO();
 		
 		if(wishlist_product.getQuantity()==0) {
@@ -86,9 +84,11 @@ public class CreatorServices {
 		}
 		
 		else {
+			EmailServices email_serv = new EmailServices();
 			ArrayList<String> field_names = new ArrayList<>();
 			if(wishlist_product.getQuantity()>0) {
 				field_names.add("quantity");
+				field_names.add("remaining_qty");
 			}
 			
 			if(wishlist_product.getAddress()!=null) {
@@ -99,7 +99,29 @@ public class CreatorServices {
 				field_names.add("reason");
 			}
 			
-			return dao.updateWishlistProduct(wishlist_product, field_names);
+			//For sending email to fullfillers
+			if(dao.updateWishlistProduct(wishlist_product, field_names)=="success") {
+				WishlistProduct curr = dao.getWishlistProductByID(wishlist_product.getId());
+				if(curr!=null) {
+					int wishlist_id = curr.getWishlist_id();
+					
+					WishlistFullfillersDAO wfdao = new WishlistFullfillersDAO();
+					String[] recipients = wfdao.getFullfillersByWishlistID(wishlist_id);
+					
+					if(recipients.length>0) {
+						String subject = "Updated Wish list : Wish list Service";
+				        String body = "<h2>Hello Fullfiller,</h3>"
+				        			+ "<h3>Hope you are doing well. A wish list shared by '"+creator+"' has been updated. Kindly open your account and fullfill the wishes of your loved ones.</h3>"
+				        			+ "<h4>Yours faithfully,</h4>"
+				        			+ "<h4>Wish list Service Team.</h4>";
+				        
+				        return email_serv.sendEmail(recipients, subject, body);
+					}
+				}
+				return "success";
+			}
+			
+			return "fail";
 		}
 	}
 	
@@ -134,17 +156,25 @@ public class CreatorServices {
 	@Consumes("application/json")
 	public String updateWishlistAddProduct(WishlistProduct product) {
 		
-		product.setId(product.getId());
-		product.setWishlist_id(product.getWishlist_id());
-		product.setProduct_id(product.getProduct_id());
-		product.setQuantity(product.getQuantity());
-		product.setAddress(product.getAddress());
-		product.setReason(product.getReason());
-		
 		WishlistProductDAO dao = new WishlistProductDAO();
 		
-		if(dao.createWishlistAddProduct(product)!=-1)
+		if(dao.createWishlistAddProduct(product)!=-1) {
+			EmailServices email_serv = new EmailServices();
+			WishlistFullfillersDAO wdao = new WishlistFullfillersDAO();
+			
+			String[] recipients = wdao.getFullfillersByWishlistID(product.getWishlist_id());
+			if(recipients.length>0) {
+				String subject = "New Item added to Wish list : Wish list Service";
+		        String body = "<h2>Hello Fullfiller,</h3>"
+		        			+ "<h3>Hope you are doing well. A new product has been added to the wish list. Kindly open your account and fullfill the wishes of your loved ones.</h3>"
+		        			+ "<h4>Yours faithfully,</h4>"
+		        			+ "<h4>Wish list Service Team.</h4>";
+		        
+		        return email_serv.sendEmail(recipients, subject, body);
+			}
 			return "success";
+		}
+			
 		else
 			return "fail";
 	}
@@ -194,69 +224,38 @@ public class CreatorServices {
 	@POST
 	@Path("/addWishlistFullfillers")
 	@Consumes("application/json")
-	public String addWishlistFullfillers(WishlistFullfillers fullfiller)
+	public String addWishlistFullfillers(String data) throws JSONException
 	{	
+		JSONObject fullfiller_data = new JSONObject(data);
 		
-		fullfiller.setFullfiller_id("deepika");
-		fullfiller.setWishlist_id(fullfiller.getWishlist_id());
+		WishlistFullfillers fullfiller = new WishlistFullfillers();
+		
+		CustomerDAO custdao = new CustomerDAO();
+		String fullfiller_id = custdao.getCustomerIDByEmail(fullfiller_data.getString("email"));
+		
+		if(fullfiller_id==null) {
+			return "email_fail";
+		}
+		
+		fullfiller.setFullfiller_id(fullfiller_id);
+		fullfiller.setWishlist_id(fullfiller_data.getInt("wishlist_id"));
 		
 		WishlistFullfillersDAO dao = new WishlistFullfillersDAO();
 
-		//sending email to fullfiller to tell that a wishlist has been shared with him
-	    String USER_NAME = "";  // Gmail user name (just the part before "@gmail.com")
-        String PASSWORD = "";   // Gmail password (removed for now)
-
-        String RECIPIENT = fullfiller.getFullfiller_id();
+		String subject = "Shared Wish list : Wish list Service";
+        String body = "<h2>Hello "+fullfiller_id+",</h3>"
+        			+ "<h3>Hope you are doing well. A wish list has been shared with you. Kindly open your account and fullfill the wishes of your loved ones.</h3>"
+        			+ "<h4>Yours faithfully,</h4>"
+        			+ "<h4>Wish list Service Team.</h4>";
         
-        String from = USER_NAME;
-        String pass = PASSWORD;
-        String[] to = { RECIPIENT }; // list of recipient email addresses
-        String subject = "Shared Wishlist";
-        String body = "<h3>Hello,</h3><h4>A wishlist has been shared with you. Kindly open your account and fullfill the wishes of your loved ones.</h4>";
-        
-        Properties props = System.getProperties();
-        String host = "smtp.gmail.com";
-	    props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.ssl.trust", host);
-        props.put("mail.smtp.user", from);
-	    props.put("mail.smtp.password", pass);
-        props.put("mail.smtp.port", "587");
-        props.put("mail.smtp.auth", "true");
-        Session session = Session.getDefaultInstance(props);
-        MimeMessage message = new MimeMessage(session);
-        try {
-            message.setFrom(new InternetAddress(from));
-            InternetAddress[] toAddress = new InternetAddress[to.length];
-
-            // To get the array of addresses
-            for( int i = 0; i < to.length; i++ ) {
-            	toAddress[i] = new InternetAddress(to[i]);
-            }
-
-            for( int i = 0; i < toAddress.length; i++) {
-                message.addRecipient(Message.RecipientType.TO, toAddress[i]);
-            }
-
-            message.setSubject(subject);
-            message.setContent(body,"text/html" );   //to send html formatted email
-
-            Transport transport = session.getTransport("smtp");
-
-            transport.connect(host, from, pass);
-            transport.sendMessage(message, message.getAllRecipients());
-            transport.close();
-        }
-        catch (AddressException ae) {
-            ae.printStackTrace();
-        }
-        catch (MessagingException me) {
-            me.printStackTrace();
+        String[] email = { fullfiller_data.getString("email") };
+        EmailServices email_serv = new EmailServices();
+        if(dao.addWishlistFllfillers(fullfiller)!=-1) {
+        	email_serv.sendEmail(email, subject, body);
+    		return "success";
         }
 						
-		if(dao.addWishlistFllfillers(fullfiller)!=-1)
-			return "success";
-		else
-			return "fail";
+		return "fail";
 			 
 	}
 	

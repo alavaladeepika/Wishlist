@@ -84,7 +84,7 @@ public class FullfillerServices {
 			try {
 				
 				product.put("wishlist_name", wishlist.getName());
-				product.put("quantity", wishlistedProducts.get(i).getQuantity());
+				product.put("remaining_qty", wishlistedProducts.get(i).getRemaining_qty());
 				product.put("address", wishlistedProducts.get(i).getAddress());
 				product.put("reason", wishlistedProducts.get(i).getReason());
 					
@@ -93,6 +93,7 @@ public class FullfillerServices {
 				
 				product.put("product_id", productDetails.getProduct_id());
 				product.put("product_name", productDetails.getProduct_name());
+				product.put("product_qty", productDetails.getQuantity());
 				product.put("brand", productDetails.getBrand());
 				product.put("description", productDetails.getDescription());
 				product.put("price", productDetails.getPrice());

@@ -34,7 +34,6 @@ public class CustomerServices {
 		
 		Login login = new Login();
 		login.setLogin_id(json.getString("login_id"));
-		//System.out.println("Login Cust.................................."+login.getLogin_id());
 		login.setPassword(json.getString("password"));
 		
 		Customer customer = new Customer();
@@ -42,9 +41,7 @@ public class CustomerServices {
 		customer.setName(json.getString("name"));
 		customer.setPhone_no(json.getString("phone_no"));
 		customer.setLogin_id(json.getString("login_id"));
-		//System.out.println("Login .................................."+customer.getLogin_id());
 		customer.setDob(json.getString("dob"));
-		customer.setAddress(json.getString("address"));
 		customer.setGender(json.getString("gender"));
 		
 		LoginDAO ldao = new LoginDAO();

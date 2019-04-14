@@ -7,57 +7,38 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <title>My Wishlists</title>
+  <title>My Wish Lists</title>
+  <link rel="shortcut icon" href="images/Extras/logo.jpg">
+  
 </head>
 <!-- Manisha -->
-<body>
-<div class="container" align="center">
-  <h2>My Wishlists</h2>
-  <div class="table-responsive-lg text-lg-center">          
-    <table id = "stable" class="table table-bordered">
-      <thead>
-        <tr>
-          <th>S.No</th>
-          <th>Name of the Wishlist</th>
-          <!--  <th>Creator id</th>-->
-          <th>Wishlist Status</th>
-        </tr>
-      </thead>
-<!--<div class="container" align="center">
-  <h2>My Wishlists</h2>
-  <div id = "stable" class="table-responsive-lg text-lg-center">          
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>S.No</th>
-          <th>Name of the Wishlist</th>
-          
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>
-            <button type="button" class="btn btn-link">Birthday's Wishlist</button>
-          </td>
-         
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>
-            <button type="button" class="btn btn-link">Anniversary's Wishlist</button>
-          </td>
-         
-        </tr>
-        
-      </tbody>
-    </table>
-  </div>
-</div>
--->
-    </table>
-  </div>
-</div>
-<script src="assets/js/myWishlists_actions.js"></script>
+<body style = "background-color: rgba(128,128,128,0.1);">
+	
+	<div id="header"></div>
+
+	<div class = "card" style="border-radius: 0 !important;">
+	   <h3 align='center'>My Wish Lists</h3>
+	</div>
+
+	<div class = "card" style="margin-left: 151px; margin-right: 151px; border-radius: 0 !important;">
+	  <div class="table-responsive-lg text-lg-center">          
+	    <table id = "stable" class="table table-bordered">
+	      <thead>
+	        <tr>
+	          <th>S.No</th>
+	          <th>Name of the Wish List</th>
+	          <th>Wish List Status</th>
+	        </tr>
+	      </thead>
+	      
+	      <!-- Entries added dynamically -->
+	      
+	    </table>
+	  </div>
+	</div>
+	
 </body>
+
+<script src="assets/js/cookie.js"></script>
+<script src="assets/js/myWishlists_actions.js"></script>
 </html>

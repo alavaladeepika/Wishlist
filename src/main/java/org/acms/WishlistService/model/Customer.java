@@ -7,7 +7,6 @@ public class Customer {
 	private String email_id;
 	private String phone_no;
 	private String dob;
-	private String address;
 	private String gender;
 	
 	public int getId() {
@@ -45,12 +44,6 @@ public class Customer {
 	}
 	public void setDob(String dob) {
 		this.dob = dob;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
 	}
 	public String getGender() {
 		return gender;

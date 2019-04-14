@@ -11,6 +11,15 @@ public class CustomerDAO extends HibernateDAO<Customer> {
 		return super.find(entity, "login_id", id);
 	}
 	
+	//Get the login id given the email (Deepika)
+	public String getCustomerIDByEmail(String email) {
+		Customer customer = super.find(entity, "email_id", email);
+		if(customer==null) {
+			return null;
+		}
+		return customer.getLogin_id();
+	}
+	
 	//Add new customer (Deepika)
 	public String createCustomer(Customer customer) {
 		if(super.add(customer)>=1) {

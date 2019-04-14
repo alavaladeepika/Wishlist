@@ -4,6 +4,14 @@
 var username;
 var password;
 jQuery(document).ready(function($){
+	$("body").on("click","#logo_img",function(){
+		window.location = "catalog.html";
+	});
+	
+	$("body").on("click","#register",function(){
+		window.location = "register.html";
+	});
+	
 	$('#Login').click(function(){
 		
 		render_data();
@@ -30,10 +38,8 @@ jQuery(document).ready(function($){
 				if(!$.isEmptyObject(data)){
 					alert ("Login successfully");
 					var uid=$("#username").val();
-					sessionStorage.setItem("user_id",String(uid));
-					//alert(sessionStorage.getItem("user_id"));
-					window.location.replace("http://localhost:8080/WishlistService/catalog.html");
-					//$("#prod_seller").text("Seller: "+seller.name);
+					setCookie("login_id", uid, 1);
+					window.location = "catalog.html";
 				}
 				else{
 					alert("Invalid User ID or Password");

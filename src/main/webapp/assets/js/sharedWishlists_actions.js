@@ -2,8 +2,14 @@
  * Deepika
  */
 jQuery(document).ready(function($){
-		
-	var fullfiller_id = "deepika";
+	
+	$("#header").load("header.html");
+	
+	var fullfiller_id = checkCookie("login_id");
+	if(fullfiller_id==null){
+		window.location = "login.html";
+	}
+	
 	var url = "http://localhost:8080/WishlistService/webapi/fullfiller/getSharedWishlists/"+fullfiller_id;
 	$.ajax({
 		type : 'POST',
@@ -25,7 +31,7 @@ jQuery(document).ready(function($){
 						        "<tr>"+
 						          "<td>"+(i+1)+".</td>"+
 						          "<td>"+
-						            "<button id = 'btn_"+wishlist_no+"' type='button' class='btn btn-link'></button>"+
+						            "<button id = 'btn_"+wishlist_no+"' type='button' class='btn btn-link' style='color: #febd69; font-weight: bold;'></button>"+
 						          "</td>"+
 						          "<td>"+wishlists[i].creator_id+"</td>"+
 						          "<td>"+wishlists[i].creator_name+"</td>"+
@@ -36,7 +42,7 @@ jQuery(document).ready(function($){
 					$("#btn_"+wishlist_no).text(wishlists[i].wishlist_name+"'s Wish List");
 					
 					$('#btn_'+wishlist_no).click(function(){
-					//TODO
+						window.location = "sharedWishlist.html?wishlistid="+wishlist_no;
 					});
 				}
 		    }

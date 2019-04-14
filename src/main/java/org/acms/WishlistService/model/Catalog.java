@@ -8,6 +8,7 @@ public class Catalog {
 	private String description;
 	private float price;
 	private int quantity;
+	
 	private String pic_location;
 	
 	public int getProduct_id() {
@@ -57,7 +58,7 @@ public class Catalog {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
+	
 	public String getPic_location() {
 		return pic_location;
 	}
