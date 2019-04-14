@@ -79,50 +79,44 @@ public class CreatorServices {
 	public String updateWishlist(@PathParam("id") String creator, WishlistProduct wishlist_product){
 		WishlistProductDAO dao = new WishlistProductDAO();
 		
-		if(wishlist_product.getQuantity()==0) {
-			return dao.deleteWishlistProduct(wishlist_product.getId());
+		EmailServices email_serv = new EmailServices();
+		ArrayList<String> field_names = new ArrayList<>();
+		if(wishlist_product.getQuantity()>=0) {
+			field_names.add("quantity");
+			field_names.add("remaining_qty");
 		}
 		
-		else {
-			EmailServices email_serv = new EmailServices();
-			ArrayList<String> field_names = new ArrayList<>();
-			if(wishlist_product.getQuantity()>0) {
-				field_names.add("quantity");
-				field_names.add("remaining_qty");
-			}
-			
-			if(wishlist_product.getAddress()!=null) {
-				field_names.add("address");
-			}
-			
-			if(wishlist_product.getReason()!=null) {
-				field_names.add("reason");
-			}
-			
-			//For sending email to fullfillers
-			if(dao.updateWishlistProduct(wishlist_product, field_names)=="success") {
-				WishlistProduct curr = dao.getWishlistProductByID(wishlist_product.getId());
-				if(curr!=null) {
-					int wishlist_id = curr.getWishlist_id();
-					
-					WishlistFullfillersDAO wfdao = new WishlistFullfillersDAO();
-					String[] recipients = wfdao.getFullfillersByWishlistID(wishlist_id);
-					
-					if(recipients.length>0) {
-						String subject = "Updated Wish list : Wish list Service";
-				        String body = "<h2>Hello Fullfiller,</h3>"
-				        			+ "<h3>Hope you are doing well. A wish list shared by '"+creator+"' has been updated. Kindly open your account and fullfill the wishes of your loved ones.</h3>"
-				        			+ "<h4>Yours faithfully,</h4>"
-				        			+ "<h4>Wish list Service Team.</h4>";
-				        
-				        return email_serv.sendEmail(recipients, subject, body);
-					}
-				}
-				return "success";
-			}
-			
-			return "fail";
+		if(wishlist_product.getAddress()!=null) {
+			field_names.add("address");
 		}
+		
+		if(wishlist_product.getReason()!=null) {
+			field_names.add("reason");
+		}
+		
+		//For sending email to fullfillers
+		if(dao.updateWishlistProduct(wishlist_product, field_names)=="success") {
+			WishlistProduct curr = dao.getWishlistProductByID(wishlist_product.getId());
+			if(curr!=null) {
+				int wishlist_id = curr.getWishlist_id();
+				
+				WishlistFullfillersDAO wfdao = new WishlistFullfillersDAO();
+				String[] recipients = wfdao.getFullfillersByWishlistID(wishlist_id);
+				
+				if(recipients.length>0) {
+					String subject = "Updated Wish list : Wish list Service";
+			        String body = "<h2>Hello Fullfiller,</h3>"
+			        			+ "<h3>Hope you are doing well. A wish list shared by '"+creator+"' has been updated. Kindly open your account and fullfill the wishes of your loved ones.</h3>"
+			        			+ "<h4>Yours faithfully,</h4>"
+			        			+ "<h4>Wish list Service Team.</h4>";
+			        
+			        return email_serv.sendEmail(recipients, subject, body);
+				}
+			}
+			return "success";
+		}
+			
+		return "fail";
 	}
 	
 	// API to delete the wishlist of the creator, change the status to 'INACTIVE' (Deepika)

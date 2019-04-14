@@ -84,6 +84,7 @@ public class FullfillerServices {
 			try {
 				
 				product.put("wishlist_name", wishlist.getName());
+				product.put("req_qty", wishlistedProducts.get(i).getQuantity());
 				product.put("remaining_qty", wishlistedProducts.get(i).getRemaining_qty());
 				product.put("address", wishlistedProducts.get(i).getAddress());
 				product.put("reason", wishlistedProducts.get(i).getReason());

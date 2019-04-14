@@ -153,22 +153,16 @@ jQuery(document).ready(function($){
 			
 			if(new_qt != init_qt){
 				wishlist_product["quantity"] =  new_qt;
-				if(f_qty == 0){
-					//console.log(f_qty+"..");
-					wishlist_product["remaining_qty"] = new_qt;
-				}
-				else{
-					wishlist_product["remaining_qty"] = new_qt-f_qty;
-				}
+				wishlist_product["remaining_qty"] = new_qt-f_qty;
 				console.log(init_qt+" : "+new_qt);
 			}
 
-			if(new_address != init_address && new_qt !=0){
+			if(new_address != init_address){
 				wishlist_product["address"] = new_address;
 				console.log(init_address+" : "+new_address);
 			}
 			
-			if(new_reason != init_reason && new_qt !=0){
+			if(new_reason != init_reason){
 				wishlist_product["reason"] = new_reason;
 				console.log(init_reason+" : "+new_reason);
 			}

@@ -49,6 +49,7 @@ jQuery(document).ready(function($){
 					var description=items_list[i].description;
 					var price=items_list[i].price;
 					var quantity=items_list[i].remaining_qty;
+					var req_qty = items_list[i].req_qty;
 					if(quantity<=0){
 						quantity = 0;
 					}
@@ -74,14 +75,19 @@ jQuery(document).ready(function($){
 							    "</div>"+
 							    
 							    "<div>"+
-							    	"<div style='margin-top: 50px; margin-left: 250px;'>"+
+							    	"<div style='margin-top: 30px; margin-left: 250px;'>"+
 								    	"<div class='row'>" +
 								      		"<label class='col-form-label' style='font-weight: bold; color: #800000; font-size: 20px;'>Rs. </label>" +
 								      		"<label id='price_"+prod_no+"' class='col-form-label' style='font-weight: bold; color: #800000; margin-left: 4px; font-size: 20px;'>"+price+"</label>" +
 								      	"</div>"+
+								      	
+								      	"<div class='row'>" +
+								      		"<label class='col-form-label' style='color: green; font-size: 15px; margin-right: 10px;'>Required: </label>" +
+								      		"<label id='req_qty_"+prod_no+"' class='col-form-label' style='color: green; font-size: 15px;'>"+req_qty+" unit(s)</label>" +
+								      	"</div>"+
 								      
 								      	"<div class='row'>"+
-								      		"<label class='col-form-label' style='color: green; font-size: 15px; margin-right: 10px;'>Quantity: </label>"+
+								      		"<label class='col-form-label' style='color: red; font-size: 15px; margin-right: 10px;'>Remaining: </label>"+
 								      		"<input type='number' id='quantity_"+prod_no+"' class='col-form-label' min=0 max="+quantity+" value="+quantity+"></input>"+
 								      	"</div>"+
 							    	"</div>"+
@@ -130,7 +136,7 @@ jQuery(document).ready(function($){
 				var prod_no = ids[i];
 				console.log(prod_no);
 				if(qtys[i]< $('#quantity_'+prod_no).val()){
-					alert("Only "+qtys[i]+" unit(s) are available!");
+					alert("Only "+qtys[i]+" unit(s) of the product " + (i+1) +" are available!");
 					flag=1;
 					break;
 				}
