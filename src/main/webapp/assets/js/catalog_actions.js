@@ -23,7 +23,7 @@ jQuery(document).ready(function($){
 					var price = product_list[i].price;
 					var image_location = product_list[i].pic_location;
 					
-					var catalog= "<div class='card' style='width:369px; height: 430px;'>"+
+					var catalog= "<div class='card' style='width:326px; height: 430px; border-radius: 0 !important;'>"+
 									"<img src="+image_location+" class='card-img-top zoom'>"+
 									"<div class='card-body' align='center'>"+
 										"<h4 class='card-title' style='color: blue;'>"+prod_name+"</h4>"+

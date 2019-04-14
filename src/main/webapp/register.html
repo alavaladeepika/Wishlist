@@ -22,112 +22,114 @@
   <img id="logo_img" src="images/Extras/aws_logo.png" style="margin-top: 5px; width: 130px; height: 56px; cursor: pointer;"> 
 </div>
 
-<div class="card" style="margin-left: 400px; margin-right: 400px; border-radius: 5px;">
-
-  <h2 align="center" style="margin-top: 10px;">Create Account</h2>
-
-  	  <div class="form-group row" style="margin-top: 10px;">
-	    <label style="margin-left:80px;" class="col-form-label col-lg-3" for="name">Name:</label>
-	    <div>
-	      <input class="form-control" maxlength = "90" id="name" placeholder="Enter your name">
-	      <div id="warning_name" class="warning">Enter your name</div>
-	    </div>
-	  </div>
-	  
-	  <div class="form-group row">
-	    <label style="margin-left:80px;" class="col-form-label col-lg-3" for="email">Email:</label>
-	    <div>
-	      <input type="email" class="form-control" maxlength = "80" id="email" placeholder="Enter your email address">
-	      <div id="warning_email" class="warning">Enter a valid email address</div>
-	      <div id="email_exists" class="warning">Email Address is already in use. Please choose a different one!</div>
-	    </div>
-	  </div>
-	  
-	  <div class="form-group row">
-	    <label style="margin-left:80px;" class="col-form-label col-lg-3" for="phn_no">Phone Number:</label>
-	    <div>
-	      <input type="text" maxlength = "10" pattern="[1-9]{1}[0-9]{9}" class="form-control" id="phn_no" placeholder="10-digit mobile number">
-	  	  <div id="warning_phn" class="warning">Enter a valid phone number</div>
-	      <div id="phn_exists" class="warning">Phone number is already in use. Please choose a different one!</div>
-	    </div>
-	  </div>
-	  
-	  <div class="form-group row">
-	    <label style="margin-left:80px;" class="col-form-label col-lg-3" for="dob">Date of Birth:</label>
-	    <div>
-	      <input type="date" class="form-control" id="dob">
-	      <div id="warning_dob" class="warning">Please give your Date of Birth</div>
-	    </div>
-	  </div>
-	  
-	  <div class="form-group row">
-	    <label style="margin-left:80px;" class="col-form-label col-lg-3" id="gender">Gender:</label>
-	    <div>
-		    <div class="form-check form-check-inline">
-			  <label class="form-check-label">
-			    <input class="form-check-input" type="radio" name="optradio" id="radio1" value="F"> F
-			  </label>
+<div align='center'>
+	<div class="card" style="width: 50%; border-radius: 5px;">
+	
+	  <h2 align="center" style="margin-top: 10px;">Create Account</h2>
+	
+	  	  <div class="form-group row" style="margin-top: 10px;">
+		    <label style="margin-left:90px;" class="col-form-label col-lg-3" for="name">Name:</label>
+		    <div>
+		      <input class="form-control" maxlength = "90" id="name" placeholder="Enter your name">
+		      <div id="warning_name" class="warning">Enter your name</div>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group row">
+		    <label style="margin-left:90px;" class="col-form-label col-lg-3" for="email">Email:</label>
+		    <div>
+		      <input type="email" class="form-control" maxlength = "80" id="email" placeholder="Enter your email address">
+		      <div id="warning_email" class="warning">Enter a valid email address</div>
+		      <div id="email_exists" class="warning">Email Address is already in use. Please choose a different one!</div>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group row">
+		    <label style="margin-left:90px;" class="col-form-label col-lg-3" for="phn_no">Phone Number:</label>
+		    <div>
+		      <input type="text" maxlength = "10" pattern="[1-9]{1}[0-9]{9}" class="form-control" id="phn_no" placeholder="10-digit mobile number">
+		  	  <div id="warning_phn" class="warning">Enter a valid phone number</div>
+		      <div id="phn_exists" class="warning">Phone number is already in use. Please choose a different one!</div>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group row">
+		    <label style="margin-left:90px;" class="col-form-label col-lg-3" for="dob">Date of Birth:</label>
+		    <div>
+		      <input type="date" class="form-control" id="dob">
+		      <div id="warning_dob" class="warning">Please give your Date of Birth</div>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group row">
+		    <label style="margin-left:90px;" class="col-form-label col-lg-3" id="gender">Gender:</label>
+		    <div>
+			    <div class="form-check form-check-inline">
+				  <label class="form-check-label">
+				    <input class="form-check-input" type="radio" name="optradio" id="radio1" value="F"> F
+				  </label>
+				</div>
+				<div class="form-check form-check-inline">
+				  <label class="form-check-label">
+				    <input class="form-check-input" type="radio" name="optradio" id="radio2" value="M"> M
+				  </label>
+				</div>
+				<div class="form-check form-check-inline">
+				  <label class="form-check-label">
+				    <input class="form-check-input" type="radio" name="optradio" id="radio3" value="others"> Others
+				  </label>
+				</div>
+			    <div id="warning_gender" class="warning">Please choose your gender</div>
 			</div>
-			<div class="form-check form-check-inline">
-			  <label class="form-check-label">
-			    <input class="form-check-input" type="radio" name="optradio" id="radio2" value="M"> M
-			  </label>
-			</div>
-			<div class="form-check form-check-inline">
-			  <label class="form-check-label">
-			    <input class="form-check-input" type="radio" name="optradio" id="radio3" value="others"> Others
-			  </label>
-			</div>
-		    <div id="warning_gender" class="warning">Please choose your gender</div>
-		</div>
-	  </div>
-	  
-	  <div class="form-group row">
-	    <label style="margin-left:80px;" class="col-form-label col-lg-3" for="login_id">Login id:</label>
-	    <div>
-	      <input class="form-control" id="login_id" maxlength = "45" placeholder="Choose a login id">
-	      <div id="warning_login" class="warning">Please choose a Login ID</div>
-	      <div id="login_exists" class="warning">Login ID is already chosen. Please choose a different one!</div>
-	    </div>
-	  </div>
-	  
-	  <div class="form-group row">
-	    <label style="margin-left:80px;" class="col-form-label col-lg-3" for="pwd">Password:</label>
-	    <div>
-	      <input type="password" class="form-control" id="pwd" placeholder="Type password">
-	      <div id="warning_pwd" class="warning">Please enter your password</div>
-	    </div>
-	  </div>
-
-	  <div class="form-group row">
-	    <label style="margin-left:80px;" class="col-form-label col-lg-3" for="re_pwd">Re-type Password:</label>
-	    <div>
-          <input type="password" class="form-control" id="re_pwd" placeholder="Re-Type password">
-          <div id="warning_repwd" class="warning">Please re-enter your password</div>
-	      <div id="wrong_repwd" class="warning">Passwords doesn't match</div>
-	    </div>
-	  </div>
-	  
-	  <div class="form-check form-check-inline">
-	    <label style="margin-left:95px;" class="form-check-label">
-	      <input id="check_tnc" class="form-check-input" type="checkbox"> 
-	      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#tncModal">
-	        I agree to the Terms and Conditions
-	      </button>
-	    </label>
-	  </div>
-	  
-	  <div id="warning_check" class="warning" style="margin-left:95px;">Please agree to the terms and conditions to proceed!</div>
-  	  
-	  <div align = "center">
-	    <button style="margin-top: 20px; margin-bottom: 20px;" id="submit" type="button" disabled="disabled" class="btn amazon_btn col-lg-6">Register</button>
-	  </div>
-	  
-	  <div class="form-group row">
-	    <label style="margin-left:195px;" class="col-form-label">Already have an account?</label>
-	    <button id="signin" type="button" class="btn btn-link">Sign in</button>
-	  </div>
-  </div>	
+		  </div>
+		  
+		  <div class="form-group row">
+		    <label style="margin-left:90px;" class="col-form-label col-lg-3" for="login_id">Login id:</label>
+		    <div>
+		      <input class="form-control" id="login_id" maxlength = "45" placeholder="Choose a login id">
+		      <div id="warning_login" class="warning">Please choose a Login ID</div>
+		      <div id="login_exists" class="warning">Login ID is already chosen. Please choose a different one!</div>
+		    </div>
+		  </div>
+		  
+		  <div class="form-group row">
+		    <label style="margin-left:90px;" class="col-form-label col-lg-3" for="pwd">Password:</label>
+		    <div>
+		      <input type="password" class="form-control" id="pwd" placeholder="Type password">
+		      <div id="warning_pwd" class="warning">Please enter your password</div>
+		    </div>
+		  </div>
+	
+		  <div class="form-group row">
+		    <label style="margin-left:90px;" class="col-form-label col-lg-3" for="re_pwd">Re-type Password:</label>
+		    <div>
+	          <input type="password" class="form-control" id="re_pwd" placeholder="Re-Type password">
+	          <div id="warning_repwd" class="warning">Please re-enter your password</div>
+		      <div id="wrong_repwd" class="warning">Passwords doesn't match</div>
+		    </div>
+		  </div>
+		  
+		  <div  style="margin-left:135px;" class="form-check form-check-inline">
+		    <label class="form-check-label">
+		      <input id="check_tnc" class="form-check-input" type="checkbox"> 
+		      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#tncModal">
+		        I agree to the Terms and Conditions
+		      </button>
+		    </label>
+		  </div>
+		  
+		  <div id="warning_check" class="warning">Please agree to the terms and conditions to proceed!</div>
+	  	  
+		  <div align = "center">
+		    <button style="margin-top: 20px; margin-bottom: 20px;" id="submit" type="button" disabled="disabled" class="btn amazon_btn col-lg-6">Register</button>
+		  </div>
+		  
+		  <div class="form-group row">
+		    <label style="margin-left:195px;" class="col-form-label">Already have an account?</label>
+		    <button id="signin" type="button" class="btn btn-link">Sign in</button>
+		  </div>
+	  </div>	
+</div>
   
   <!-- For the pop-up of terms and conditions -->
   <div class="modal fade" id="tncModal">
@@ -162,4 +164,4 @@
 <script src="assets/js/register_actions.js"></script>
 
 </body>
-</html> 
+</html>
