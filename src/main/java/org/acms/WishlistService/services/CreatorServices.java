@@ -152,25 +152,30 @@ public class CreatorServices {
 		
 		WishlistProductDAO dao = new WishlistProductDAO();
 		
-		if(dao.createWishlistAddProduct(product)!=-1) {
-			EmailServices email_serv = new EmailServices();
-			WishlistFullfillersDAO wdao = new WishlistFullfillersDAO();
+		if(dao.checkProductExistsInWishlist(product.getWishlist_id(), product.getProduct_id())==0) {
+			if(dao.createWishlistAddProduct(product)!=-1) {
+				
+				EmailServices email_serv = new EmailServices();
+			    WishlistFullfillersDAO wdao = new WishlistFullfillersDAO();
 			
-			String[] recipients = wdao.getFullfillersByWishlistID(product.getWishlist_id());
-			if(recipients.length>0) {
-				String subject = "New Item added to Wish list : Wish list Service";
-		        String body = "<h2>Hello Fullfiller,</h3>"
-		        			+ "<h3>Hope you are doing well. A new product has been added to the wish list. Kindly open your account and fullfill the wishes of your loved ones.</h3>"
-		        			+ "<h4>Yours faithfully,</h4>"
-		        			+ "<h4>Wish list Service Team.</h4>";
+			    String[] recipients = wdao.getFullfillersByWishlistID(product.getWishlist_id());
+			    if(recipients.length>0) {
+			    	String subject = "New Item added to Wish list : Wish list Service";
+			        String body = "<h2>Hello Fullfiller,</h3>"
+		        	       		+ "<h3>Hope you are doing well. A new product has been added to the wish list. Kindly open your account and fullfill the wishes of your loved ones.</h3>"
+		        			    + "<h4>Yours faithfully,</h4>"
+		        			    + "<h4>Wish list Service Team.</h4>";
 		        
-		        return email_serv.sendEmail(recipients, subject, body);
-			}
-			return "success";
-		}
+		            return email_serv.sendEmail(recipients, subject, body);
+			    }
+			    return "success";
+		     }
 			
+		     else
+			    return "fail";
+		}
 		else
-			return "fail";
+			return "ProductAlreadyExists";
 	}
 		
 	//For sharedWishlist(Vaishali)
@@ -223,9 +228,14 @@ public class CreatorServices {
 		JSONObject fullfiller_data = new JSONObject(data);
 		
 		WishlistFullfillers fullfiller = new WishlistFullfillers();
+		WishlistFullfillersDAO fullfillerDao = new WishlistFullfillersDAO();
 		
 		CustomerDAO custdao = new CustomerDAO();
 		String fullfiller_id = custdao.getCustomerIDByEmail(fullfiller_data.getString("email"));
+		
+		if(fullfillerDao.checkIfFullfillerAlreadyExists(fullfiller_data.getInt("wishlist_id"), fullfiller_data.getString("email"))==1) {
+			return "FullfillerAlreadyExists";
+		}
 		
 		if(fullfiller_id==null) {
 			return "email_fail";

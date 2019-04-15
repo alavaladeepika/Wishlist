@@ -86,4 +86,15 @@ public class WishlistFullfillersDAO extends HibernateDAO<WishlistFullfillers> {
     	return -1;
     }
 
+    public int checkIfFullfillerAlreadyExists(int wishlist_id, String email) {
+    	
+    	String existingWishlistFullfillers[] = getFullfillersByWishlistID(wishlist_id);
+    	
+    	for(int i=0;i<existingWishlistFullfillers.length;i++) {
+    		if(existingWishlistFullfillers[i].equals(email)) {
+    			return 1;
+    		}
+    	}
+    	return 0;
+    }
 }

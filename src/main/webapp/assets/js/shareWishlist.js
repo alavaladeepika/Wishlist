@@ -36,7 +36,7 @@ jQuery(document).ready(function($){
 			url : url,
 			data : JSON.stringify(req_data),
 			success : function(data){
-
+				
 				if(data=="success"){
 					$("#warning").hide();
 					//$('#myModal').hide();
@@ -46,6 +46,9 @@ jQuery(document).ready(function($){
 			    }
 				else if(data=="email_fail"){
 					$("#warning").show();
+				}
+				else if(data=="FullfillerAlreadyExists"){
+					alert("You have already shared it with this fullfiller!");
 				}
 			    else{
 			    	$("#warning").hide();

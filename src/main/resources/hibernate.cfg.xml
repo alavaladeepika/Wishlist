@@ -4,7 +4,7 @@
 <hibernate-configuration>
  <session-factory name="hibernateSessionFactory">
   <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-  <property name="hibernate.connection.password">1969</property>
+  <property name="hibernate.connection.password">Walia@11</property>
   <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/WishlistService</property>
   <property name="hibernate.connection.username">root</property>
   <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>

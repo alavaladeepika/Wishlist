@@ -84,10 +84,13 @@ jQuery(document).ready(function($){
 			async: true,
 	 	    			
 			success: function(data) {
-				alert("success");
+				//alert("success");
 				if(data=="success"){
 				     console.log(data);
 				     location.reload();
+				}
+				else if(data=="ProductAlreadyExists"){
+					alert("The Product you are trying to add already exists in the wishlist.");
 				}
 			    else{
 				     alert("failed not success");
