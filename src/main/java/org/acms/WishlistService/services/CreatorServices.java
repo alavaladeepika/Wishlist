@@ -1,6 +1,7 @@
 package org.acms.WishlistService.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -15,11 +16,15 @@ import org.json.JSONObject;
 
 import org.acms.WishlistService.dao.CatalogDAO;
 import org.acms.WishlistService.dao.CustomerDAO;
+import org.acms.WishlistService.dao.OrderProductDAO;
+import org.acms.WishlistService.dao.OrdersDAO;
 import org.acms.WishlistService.dao.WishlistDAO;
 import org.acms.WishlistService.dao.WishlistFullfillersDAO;
 import org.acms.WishlistService.dao.WishlistProductDAO;
 
 import org.acms.WishlistService.model.Catalog;
+import org.acms.WishlistService.model.Customer;
+import org.acms.WishlistService.model.OrderProduct;
 import org.acms.WishlistService.model.Wishlist;
 import org.acms.WishlistService.model.WishlistFullfillers;
 import org.acms.WishlistService.model.WishlistProduct;
@@ -253,4 +258,49 @@ public class CreatorServices {
 			 
 	}
 	
+	
+	// API to get details of orders placed for a wishlist. (Manisha)
+		@POST
+		@Path("/getOrders/{id}")
+		@Produces("application/json")
+		public String getOrders(@PathParam("id") int wishlist_id) throws JSONException{
+			WishlistFullfillersDAO dao = new WishlistFullfillersDAO();
+			List<WishlistFullfillers> wishlist_fullfillers = dao.getDetailsByWishlistID(wishlist_id);
+			JSONArray items = new JSONArray();
+			if(wishlist_fullfillers != null)
+			{
+
+				for (int i = 0; i < wishlist_fullfillers.size(); i++) {
+
+					CustomerDAO cudao=new CustomerDAO();
+					Customer c=cudao.getCustomerByID(wishlist_fullfillers.get(i).getFullfiller_id());
+					String name=c.getName();
+					OrdersDAO wdao = new OrdersDAO();
+					ArrayList<Integer> orders = wdao.getOrdersByID(wishlist_fullfillers.get(i).getId());
+					if (orders != null) {
+						for (int j = 0; j < orders.size(); j++) {
+							JSONObject details = new JSONObject();
+							details.put("id",j );
+							details.put("fullfiller_name", name);
+							details.put("order_id", orders.get(j));
+
+							OrderProductDAO odao = new OrderProductDAO();
+							OrderProduct op = odao.getOrderDetailsByOrderID(orders.get(j));
+							details.put("quantity", op.getQuantity());
+							details.put("price", op.getPrice());
+							CatalogDAO cdao = new CatalogDAO();
+							Catalog cat = cdao.getCatalogByProductID(op.getProduct_id());
+							details.put("product_name", cat.getProduct_name());
+							details.put("brand", cat.getBrand());
+							details.put("description", cat.getDescription());
+							details.put("pic_location", cat.getPic_location());
+							items.put(details);
+						}
+					}
+				}
+				return items.toString();
+			
+			}
+			return null;
+		}
 }

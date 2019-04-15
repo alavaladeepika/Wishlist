@@ -1,6 +1,7 @@
 package org.acms.WishlistService.dao;
 
 import org.acms.WishlistService.model.OrderProduct;
+import org.acms.WishlistService.model.Wishlist;
 
 public class OrderProductDAO extends HibernateDAO<OrderProduct>{
 
@@ -19,5 +20,10 @@ public class OrderProductDAO extends HibernateDAO<OrderProduct>{
 			return -1;
 		}
     }
+    
+  //Get the order with product details given the order id(Manisha)
+  	public OrderProduct getOrderDetailsByOrderID(int id) {
+  		return super.find(entity, "order_id", id);
+  	}
     
 }

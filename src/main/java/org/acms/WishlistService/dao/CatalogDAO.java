@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.acms.WishlistService.model.Catalog;
+import org.acms.WishlistService.model.Customer;
 
 public class CatalogDAO extends HibernateDAO<Catalog> {
 	
@@ -53,4 +54,9 @@ public class CatalogDAO extends HibernateDAO<Catalog> {
 		}
 		return -1;
 	}
+	
+	//Get the Catalog details given the product id (Manisha)
+		public Catalog getCatalogByProductID(int id) {
+			return super.find(entity, "product_id", id);
+		}
 }

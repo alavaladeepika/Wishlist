@@ -41,6 +41,10 @@ jQuery(document).ready(function($){
 		window.location = "sharedWishlists.html";  
 	});
 	
+	$("body").on("click","#placedorders",function(){
+		window.location = "placedOrders.html";  
+	});
+	
 	$("body").on("click","#logout",function(){
 		deleteCookie("login_id");
 		location.reload();

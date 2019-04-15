@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.acms.WishlistService.model.Customer;
+import org.acms.WishlistService.model.Wishlist;
 import org.acms.WishlistService.model.WishlistFullfillers;;
 
 public class WishlistFullfillersDAO extends HibernateDAO<WishlistFullfillers> {
@@ -85,5 +86,16 @@ public class WishlistFullfillersDAO extends HibernateDAO<WishlistFullfillers> {
     	
     	return -1;
     }
+    
+  //Get details given the fullfiller id(Manisha)
+  	public List<WishlistFullfillers> getIDsByFullfillerID(String fullfiller_id){
+  		
+  		return super.findAll(entity, "fullfiller_id", fullfiller_id);
+  		
+  	}
 
+  //Get the details given the wishlist id(Manisha)
+  	public List<WishlistFullfillers> getDetailsByWishlistID(int id) {
+  		return super.findAll(entity, "wishlist_id", id);
+  	}
 }

@@ -39,6 +39,9 @@ jQuery(document).ready(function($){
 						            "<button id = 'btn_"+wishlist_no+"' type='button' class='btn btn-link' style='color: #febd69; font-weight: bold;' disabled></button>"+
 						          "</td>"+
 						          "<td style='color: "+color+";'>"+wishlists[i].status+"</td>"+
+						          "<td>"+
+						            "<button id = 'btn2_"+wishlist_no+"' type='button' class='btn btn-link' style='color: #febd69; font-weight: bold;' >Track Orders of Wish List</button>"+
+						          "</td>"+
 						        "</tr>"+
 						     "</tbody>";
 					$("#stable").append(wishlist);
@@ -49,6 +52,7 @@ jQuery(document).ready(function($){
 					}	
 					
 					toWishlist(wishlist_no);
+					toOrders(wishlist_no);
 				}
 			}
 			else{
@@ -64,6 +68,11 @@ jQuery(document).ready(function($){
 	function toWishlist(id){
 		$('#btn_'+id).click(function(){
 			window.location = "creatorWishlists.html?wishlistid="+id;
+		});
+	}
+	function toOrders(id){
+		$('#btn2_'+id).click(function(){
+			window.location = "viewOrders.html?wishlistid="+id;
 		});
 	}
 });

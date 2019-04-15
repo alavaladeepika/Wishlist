@@ -7,39 +7,35 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <title>My Wish Lists</title>
-  <link rel="shortcut icon" href="images/Extras/logo.jpg">
   
+  <title>Track Wish List</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="shortcut icon" href="images/Extras/logo.jpg">
+
 </head>
+
 <!-- Manisha -->
+
 <body style = "background-color: rgba(128,128,128,0.1);">
 	
 	<div id="header"></div>
 
-	<div class = "card" style="border-radius: 0 !important;">
-	   <h3 align='center'>My Wish Lists</h3>
+	<div class = "card" style="margin-left: 151px; margin-right: 151px; border-radius: 0 !important;">
+
+	  <!-- Products in wish list come here -->
+      <div id="prod_details"></div>
+  
+  	  <!-- For the pop-up of edit details -->
+      <div id="editModals"></div>
+      
+      <!-- For sharing the wish list -->
+      <div id="shareWishlist"></div>
+  
 	</div>
 
-	<div class = "card" style="margin-left: 151px; margin-right: 151px; border-radius: 0 !important;">
-	  <div class="table-responsive-lg text-lg-center">          
-	    <table id = "stable" class="table table-bordered">
-	      <thead>
-	        <tr>
-	          <th>S.No</th>
-	          <th>Name of the Wish List</th>
-	          <th>Wish List Status</th>
-	          <th>View Orders</th>
-	        </tr>
-	      </thead>
-	      
-	      <!-- Entries added dynamically -->
-	      
-	    </table>
-	  </div>
-	</div>
-	
 </body>
 
 <script src="assets/js/cookie.js"></script>
-<script src="assets/js/myWishlists_actions.js"></script>
+<script src="assets/js/placedOrders_actions.js"></script>
+
 </html>
