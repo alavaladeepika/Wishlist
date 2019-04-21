@@ -101,7 +101,6 @@ jQuery(document).ready(function($){
 				toBuy(ids_list, qtys);
 			}
 			else{
-				//alert("No products added to the wish list");
 				var no_items = "<div id='no_items' align='center' style='border: 2px solid #eee;'>"+
 								  "<label class='col-form-label'>You have no items in this wishlist.</label>"+
 							   "</div>";
@@ -120,7 +119,6 @@ jQuery(document).ready(function($){
 	//For now only alert message of successful payment is being displayed
 	function toBuy(ids, qtys){
 		$('body').on("click", '#buy', function(){
-			//alert("Payment Successful!!"+item_list[0].wishlist_name+item_list.length);
 			
 			var user_data = {
 				"wishlist_id" : wishlist_id,
@@ -134,7 +132,6 @@ jQuery(document).ready(function($){
 			for(var i=0; i<ids.length; i++){
 				
 				var prod_no = ids[i];
-				console.log(prod_no);
 				if(qtys[i]< $('#quantity_'+prod_no).val()){
 					alert("Only "+qtys[i]+" unit(s) of the product " + (i+1) +" are available!");
 					flag=1;
@@ -147,7 +144,6 @@ jQuery(document).ready(function($){
 					product["price"] = $('#price_'+prod_no).text() * $('#quantity_'+prod_no).val();
 					
 					order_details[count.toString()] = JSON.stringify(product);
-					//alert("#price_"+prod_no+" "+product["price"]);
 					count+=1;
 				}
 			}
@@ -166,12 +162,8 @@ jQuery(document).ready(function($){
 					
 					success: function(data) {
 						if(data == "success"){
-						    //alert("Added Successfully");
 							window.location = "PaymentDone.html";
 														
-						}
-						else{
-							//alert("Data could not be found");
 						}
 					},
 					error: function(data) {

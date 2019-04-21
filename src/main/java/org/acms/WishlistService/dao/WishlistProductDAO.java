@@ -20,6 +20,21 @@ public class WishlistProductDAO extends HibernateDAO<WishlistProduct> {
 		return super.findAll(entity, "wishlist_id", id);
 	}
 	
+	//check if product already exists in same wishlist (Vaishali)
+	public int checkProductExistsInWishlist(int wishlist_id, int product_id) {
+			
+		List<WishlistProduct> wishlistedProducts = super.findAll(entity, "wishlist_id", wishlist_id);
+		if(wishlistedProducts!=null) {
+			for(int i=0; i<wishlistedProducts.size();i++) {
+				if(wishlistedProducts.get(i).getProduct_id()==product_id) {
+					return 1;
+				}
+			}
+		}
+		
+		return 0;
+	}
+	
 	//Delete the product in the wishlist with wishlist_id(Deepika)
 	public String deleteWishlistProduct(int id) {
 		int rows = super.deleteRow(entity, "id", id);

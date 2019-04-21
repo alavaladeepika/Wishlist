@@ -44,11 +44,9 @@ public class CatalogDAO extends HibernateDAO<Catalog> {
 			
 		} 
 		catch (NoSuchFieldException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		catch (SecurityException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return -1;

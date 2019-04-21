@@ -153,7 +153,6 @@ jQuery(document).ready(function($){
 			"customer" : customer,
 		}
 		
-		//console.log(customer);
 		var url = "http://localhost:8080/WishlistService/webapi/customer/registerUser";
 		$.ajax({
 			type : 'POST',
@@ -162,24 +161,20 @@ jQuery(document).ready(function($){
 			data: JSON.stringify(customer),
 			success: function(status) {
 				if(status=="success"){
-					//console.log(data);
 					setCookie("login_id", login_id, 1);
 					alert("Successfully registered!!");
 					console.log(checkCookie("login_id"));
 					window.location = "catalog.html";
 				}
 				else if(status == "login_id"){
-					//alert("Login ID already exists, choose different one!");
 					$("#login_id").focus();
 					$("#login_exists").show();
 				}
 				else if(status=="email"){
-					//alert("Email id already exists, choose different one!");
 					$("#email").focus();
 					$("#email_exists").show();
 				}
 				else if(status=="phone_no"){
-					//alert("Phone Number already exists, choose different one!");
 					$("#phn_no").focus();
 					$("#phn_exists").show();
 				}

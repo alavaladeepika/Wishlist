@@ -13,7 +13,6 @@ public class WishlistFullfillersDAO extends HibernateDAO<WishlistFullfillers> {
 	//Get the wishlist ids of the fullfiller given the fullfiller id(Deepika)
 	public ArrayList<Integer> getWishlistsByFullfillerID(String fullfiller_id){
 		
-		//System.out.print("......................."+fullfiller_id);
 		List<WishlistFullfillers> fullfillers = super.findAll(entity, "fullfiller_id", fullfiller_id);
 		
 		if(fullfillers.size()>0) {
@@ -85,5 +84,32 @@ public class WishlistFullfillersDAO extends HibernateDAO<WishlistFullfillers> {
     	
     	return -1;
     }
+    
+    //Get details given the fullfiller id(Manisha)
+  	public List<WishlistFullfillers> getIDsByFullfillerID(String fullfiller_id){
+  		
+  		return super.findAll(entity, "fullfiller_id", fullfiller_id);
+  		
+  	}
+
+    //Get the details given the wishlist id(Manisha)
+  	public List<WishlistFullfillers> getDetailsByWishlistID(int id) {
+  		return super.findAll(entity, "wishlist_id", id);
+  	}
+  	
+  	//Check if fullfiller already exists(Vaishali)
+  	public int checkIfFullfillerAlreadyExists(int wishlist_id, String email) {
+    	
+    	String existingFullfillers[] = getFullfillersByWishlistID(wishlist_id);
+    	
+    	if(existingFullfillers!=null) {
+	    	for(int i=0;i<existingFullfillers.length;i++) {
+	    		if(existingFullfillers[i].equals(email)) {
+	    			return 1;
+	    		}
+	    	}
+    	}
+    	return 0;
+  	}
 
 }

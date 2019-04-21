@@ -25,12 +25,8 @@ jQuery(document).ready(function($){
 		window.location = "login.html";
 	});
 	
-	$("body").on("click","#login_id",function(){
-		window.location = "#";  //Add profile page
-	});
-	
-	$("body").on("click","#notifications",function(){
-		window.location = "#";  //Add notifications page
+	$("body").on("click","#myorders",function(){
+		window.location = "placedOrders.html";  
 	});
 	
 	$("body").on("click","#mywishlists",function(){

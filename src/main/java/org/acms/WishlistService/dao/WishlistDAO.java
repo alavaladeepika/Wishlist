@@ -45,6 +45,15 @@ public class WishlistDAO extends HibernateDAO<Wishlist> {
 		return wishlists;
 	}
 	
+	//Get all the ongoing wishlists of the creator given the creator id (Vaishali)
+	public List<Wishlist> getOngoingWishlists(Wishlist wishlist){
+		List<Wishlist> wishlists = super.findAll(entity, "creator_id", wishlist.getCreator_id(), "status", wishlist.getStatus());
+		if(wishlists.size()==0) {
+			return null;
+		}
+		return wishlists;
+	}
+	
 	//creating a wishlist (Vaishali)
 	public int createWishlist(Wishlist wishlist){
 		

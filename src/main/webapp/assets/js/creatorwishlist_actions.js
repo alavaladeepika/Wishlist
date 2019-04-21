@@ -29,7 +29,6 @@ jQuery(document).ready(function($){
 		url : url,
 		success : function(items){
 			
-			console.log(items);
 			if(!$.isEmptyObject(items)){
 				$("#wname").text(items[0].wishlist_name+"'s Wish List");
 
@@ -66,7 +65,6 @@ jQuery(document).ready(function($){
 							   "</div>"+
 						    "</div>"+
 						"</div>";
-					//console.log(items_list[i]);
 					$("#prod_details").append(product);
 					$('#prod_img_'+prod_no).attr("src",items[i].pic_location);
 					$("#name_"+prod_no).text(items[i].product_name);
@@ -83,7 +81,6 @@ jQuery(document).ready(function($){
 				}
 		    }
 			else{
-				//alert("No products added to the wish list");
 				var no_items = "<div id='no_items' align='center' style='border: 2px solid #eee;'>"+
 								  "<label class='col-form-label'>You have no items in this wishlist.</label>"+
 							   "</div>";
@@ -131,14 +128,12 @@ jQuery(document).ready(function($){
 			  "</div>";
 			  $("#editModals").append(modal);
 		      $("#edit_"+prod_no).show();
-		      console.log($('#reason_'+prod_no).text());
 			  updateDetails(prod_no, qty, f_qty);
 		});
 	}
 	
 	//Update the details of the product in the wishlist
 	function updateDetails(prod_no, qty, f_qty){
-		//console.log(f_qty+"..");
 		$('#save_'+prod_no).click(function(){
 			var init_qt = qty;
 			var new_qt = $("#edit_qt_"+prod_no).val();
@@ -149,22 +144,20 @@ jQuery(document).ready(function($){
 			
 			var wishlist_product = {
 				id : prod_no,
+				quantity :  -1,
 			}; 
 			
 			if(new_qt != init_qt){
 				wishlist_product["quantity"] =  new_qt;
 				wishlist_product["remaining_qty"] = new_qt-f_qty;
-				console.log(init_qt+" : "+new_qt);
 			}
 
 			if(new_address != init_address){
 				wishlist_product["address"] = new_address;
-				console.log(init_address+" : "+new_address);
 			}
 			
 			if(new_reason != init_reason){
 				wishlist_product["reason"] = new_reason;
-				console.log(init_reason+" : "+new_reason);
 			}
 			
 			var url = "http://localhost:8080/WishlistService/webapi/creator/updateWishlist/"+login_id;
@@ -200,7 +193,6 @@ jQuery(document).ready(function($){
 			data : JSON.stringify(wishlist),
 			success : function(data){
 				
-				console.log(data);
 				if(data=="success"){
 					alert("Wishlist successfully deleted!");
 					//Goto all wishlists page
@@ -218,7 +210,6 @@ jQuery(document).ready(function($){
 		$('#shareWishlist').load("shareWishlist.html?wishlistid="+wishlist_id,function(){
             $('#myModal').modal({show:true});
         });
-		//location.reload();
 	});
 
 		

@@ -153,6 +153,22 @@ public class HibernateDAO<E> {
 		return entity;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<E> findAll(String entity_name, String param1, String val1, String param2, String val2)
+	{
+		session = SessionUtil.getSession();
+		session.flush();
+		String hql = "from "+ entity_name + " where "+param1+" = :val1"+" and "+param2+" = :val2";
+		Query query = session.createQuery(hql);
+		query.setParameter("val1", val1);
+		query.setParameter("val2", val2);
+		List<E> entity = query.list();
+		session.clear();
+		session.flush();
+		session.close();
+		return entity;
+	}
+	
 	public int deleteRow(String entity_name, String param,int val)
 	{
 		session = SessionUtil.getSession();

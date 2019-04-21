@@ -18,8 +18,6 @@ public class EmailServices {
 	    String USER_NAME = "";  // Gmail user name (just the part before "@gmail.com")
         String PASSWORD = "";   // Gmail password (removed for now)
 
-        //String RECIPIENT = email;
-        
         String from = USER_NAME;
         String pass = PASSWORD;
         String[] to = email; // list of recipient email addresses

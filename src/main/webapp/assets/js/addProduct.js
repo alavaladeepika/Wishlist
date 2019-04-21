@@ -12,11 +12,9 @@ jQuery(document).ready(function($){
 	    return decodeURI(results[1]) || 0;
 	}
 	
-	//var product_id = $.urlParam("prodid");
 	var product_id = $("#myModal").val();
 	var login_id = checkCookie("login_id");
 	
-	console.log(product_id);
 	
 	if(login_id==null){
 		window.location = "login.html";
@@ -26,15 +24,16 @@ jQuery(document).ready(function($){
 	var address = $('#address');
 	var reason = $('#reason');
 	
-	var user_data = JSON.stringify({
-		creator_id : login_id,
-		
-	});
-	
 	//Initial page setting
 	dynamic_division();
 	
-	var url = "http://localhost:8080/WishlistService/webapi/creator/getAllWishlists";
+	var user_data = JSON.stringify({
+		creator_id : login_id,
+		status : "ONGOING",
+		
+	});
+
+	var url = "http://localhost:8080/WishlistService/webapi/creator/getOngoingWishlists";
 	$.ajax({
 		type : 'POST',
 		contentType : 'application/json',
@@ -42,8 +41,6 @@ jQuery(document).ready(function($){
 		data : user_data,
 		success : function(wishlists){
 			if(!$.isEmptyObject(wishlists)){
-				//alert("Wishlists accessed!!");
-				//var wishlists = data.wishlists;
 				for(var i=0;i<wishlists.length;i++){
 					$("#selected_wishlist").append("<option value='"+wishlists[i].wishlist_id+"'>"+wishlists[i].name+"</option>");	
 				}	
@@ -59,14 +56,15 @@ jQuery(document).ready(function($){
 	});
 	
 	$('#add_product_btn').click(function(){
-		if($("#wishlist_type").val()=="old")
-		   add_product_existing_wishlist();
-		else if($("#wishlist_type").val()=="new")
+		if($("#wishlist_type").val()=="old"){
+			add_product_existing_wishlist();
+		}
+		else if($("#wishlist_type").val()=="new"){
 		   add_product_new_wishlist();
+		}
 	});
 		
 	function add_product_existing_wishlist(){
-			
 		new_product = {
 		    wishlist_id : $('#selected_wishlist').val(),
 		    product_id : product_id,
@@ -75,8 +73,7 @@ jQuery(document).ready(function($){
 			address : address.val(),
 			reason : reason.val(),
 		}
-		console.log(new_product);
-        //alert("in render data  fn."+new_product.wishlist_id);
+
 		$.ajax({url:"http://localhost:8080/WishlistService/webapi/creator/updateWishlistAdd",
 			type:"POST",
 			data: JSON.stringify(new_product),
@@ -84,10 +81,13 @@ jQuery(document).ready(function($){
 			async: true,
 	 	    			
 			success: function(data) {
-				alert("success");
 				if(data=="success"){
-				     console.log(data);
+					 alert("success");
 				     location.reload();
+				}
+				else if(data=="ProductAlreadyExists"){
+					alert("The product already exists in the selected wish list.");
+					location.reload();
 				}
 			    else{
 				     alert("failed not success");
@@ -118,7 +118,6 @@ jQuery(document).ready(function($){
 	 	    
 			success: function(data) {
 				if(data=="success"){
-				     console.log(data);
 				     location.reload();
 				}
 			    else{

@@ -13,6 +13,7 @@ jQuery(document).ready(function($){
 	}
 	
 	$("#warning").hide();
+	$("#exists_warning").hide();
 	var wishlist_id = $.urlParam("wishlistid");
 	var login_id = checkCookie("login_id");
 	
@@ -28,7 +29,6 @@ jQuery(document).ready(function($){
 			email: $('#email_id').val(),
 			wishlist_id: wishlist_id, 
 	    };
-	    //console.log(req_data);
 	    var url = "http://localhost:8080/WishlistService/webapi/creator/addWishlistFullfillers";
 		$.ajax({
 			type : 'POST',
@@ -39,22 +39,26 @@ jQuery(document).ready(function($){
 
 				if(data=="success"){
 					$("#warning").hide();
-					//$('#myModal').hide();
-					//$('.window').hide();
+					$("#exists_warning").hide();
 					location.reload();
 				    alert("Successfully Shared!");
 			    }
 				else if(data=="email_fail"){
 					$("#warning").show();
+					$("#exists_warning").hide();
+				}
+				else if(data=="FullfillerAlreadyExists"){
+					$("#exists_warning").show();
+					$("#warning").hide();
 				}
 			    else{
 			    	$("#warning").hide();
+			    	$("#exists_warning").hide();
 			    	alert("Internal error!");
 				}
 			},
 			
 			error: function(data) {
-				//console.log("failed");
 				alert("failed");
 			}
 		   

@@ -17,15 +17,12 @@ jQuery(document).ready(function($){
 		url : url,
 		success : function(wishlists){
 			
-			console.log(wishlists);
 			if(!$.isEmptyObject(wishlists)){
 				var wishlist_no;
 				
-				//console.log(data);
 				for(var i=0;i<wishlists.length;i++){
 					wishlist_no=wishlists[i].wishlist_id;
 					
-					//console.log(wishlists[i].wishlist_name);
 					var wishlist = 
 							 "<tbody>"+
 						        "<tr>"+
@@ -37,7 +34,6 @@ jQuery(document).ready(function($){
 						          "<td>"+wishlists[i].creator_name+"</td>"+
 						        "</tr>"+
 						     "</tbody>";
-					//console.log(data);
 					$("#stable").append(wishlist);
 					$("#btn_"+wishlist_no).text(wishlists[i].wishlist_name+"'s Wish List");
 					

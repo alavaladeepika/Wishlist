@@ -247,3 +247,4 @@ INSERT INTO `WishlistService`.`WishlistFullfillers` (`id`, `fullfiller_id`, `wis
 INSERT INTO `WishlistService`.`WishlistFullfillers` (`id`, `fullfiller_id`, `wishlist_id`) VALUES (2, 'vaishali', 1);
 
 COMMIT;
+
