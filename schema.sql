@@ -268,8 +268,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `WishlistService`;
-INSERT INTO `WishlistService`.`WishlistProduct` (`id`, `product_id`, `wishlist_id`, `quantity`, `remaining_qty`, `address`, `reason`) VALUES (1, 1, 1, 1, DEFAULT, 'IIIT Bangalore', 'Birthday');
-INSERT INTO `WishlistService`.`WishlistProduct` (`id`, `product_id`, `wishlist_id`, `quantity`, `remaining_qty`, `address`, `reason`) VALUES (2, 2, 1, 2, DEFAULT, 'IIT Hyderabad', 'Birthday');
+INSERT INTO `WishlistService`.`WishlistProduct` (`id`, `product_id`, `wishlist_id`, `quantity`, `remaining_qty`, `address`, `reason`) VALUES (1, 1, 1, 1, 1, 'IIIT Bangalore', 'Birthday');
+INSERT INTO `WishlistService`.`WishlistProduct` (`id`, `product_id`, `wishlist_id`, `quantity`, `remaining_qty`, `address`, `reason`) VALUES (2, 2, 1, 2, 2, 'IIT Hyderabad', 'Birthday');
 
 COMMIT;
 
