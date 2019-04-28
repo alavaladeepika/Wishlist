@@ -77,7 +77,7 @@ public class CustomerServices {
 		if(user_data != null)
 		{
 			if(!user.getPassword().equals(user_data.getPassword()))
-				return user;
+				return null;
 			else
 				return user_data;
 		}
