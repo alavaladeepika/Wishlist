@@ -48,14 +48,16 @@ public class FullfillerServices {
 				WishlistDAO wdao = new WishlistDAO();
 				Wishlist wishlist = wdao.getWishlistDetailsByID(wishlists.get(i));
 				
-				details.put("wishlist_name", wishlist.getName());
-				details.put("creator_id", wishlist.getCreator_id());
-				
-				CustomerDAO cdao = new CustomerDAO();
-				Customer customer = cdao.getCustomerByID(wishlist.getCreator_id());
-				details.put("creator_name", customer.getName());
-
-				result.put(details);
+				if(wishlist.getStatus().equals("ONGOING")) {
+					details.put("wishlist_name", wishlist.getName());
+					details.put("creator_id", wishlist.getCreator_id());
+					
+					CustomerDAO cdao = new CustomerDAO();
+					Customer customer = cdao.getCustomerByID(wishlist.getCreator_id());
+					details.put("creator_name", customer.getName());
+	
+					result.put(details);
+				}
 			}
 			
 			return result.toString();

@@ -194,8 +194,8 @@ COMMIT;
 START TRANSACTION;
 USE `WishlistService`;
 INSERT INTO `WishlistService`.`Customer` (`id`, `login_id`, `email_id`, `phone_no`, `dob`, `gender`, `name`) VALUES (1, 'deepika', '99alavaladeepika@gmail.com', '9611529722', '1997-10-25', 'F', 'Deepika Alavala');
-INSERT INTO `WishlistService`.`Customer` (`id`, `login_id`, `email_id`, `phone_no`, `dob`, `gender`, `name`) VALUES (2, 'manisha', 'manisha@gmail.com', '7730069061', '1996-06-11', 'F', 'Manisha Sinha');
-INSERT INTO `WishlistService`.`Customer` (`id`, `login_id`, `email_id`, `phone_no`, `dob`, `gender`, `name`) VALUES (3, 'vaishali', 'vaishali@gmail.com', '6301319864', '1996-03-09', 'F', 'Vaishali Walia');
+INSERT INTO `WishlistService`.`Customer` (`id`, `login_id`, `email_id`, `phone_no`, `dob`, `gender`, `name`) VALUES (2, 'manisha', 'manisha.anu95@gmail.com', '7730069061', '1996-06-11', 'F', 'Manisha Sinha');
+INSERT INTO `WishlistService`.`Customer` (`id`, `login_id`, `email_id`, `phone_no`, `dob`, `gender`, `name`) VALUES (3, 'vaishali', 'vaishali.walia99@gmail.com', '6301319864', '1996-03-09', 'F', 'Vaishali Walia');
 INSERT INTO `WishlistService`.`Customer` (`id`, `login_id`, `email_id`, `phone_no`, `dob`, `gender`, `name`) VALUES (4, 'suraj', 'surajjumpy@gmail.com', '9849813768', '1992-03-18', 'M', 'Suraj Singh');
 
 COMMIT;
