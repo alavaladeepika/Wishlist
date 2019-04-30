@@ -66,7 +66,7 @@ jQuery(document).ready(function($){
 			} 
 			else {
 				var no_items = "<div id='no_items' align='center' style='border: 2px solid #eee;'>"
-								+ "<label class='col-form-label'>No orders placed for this wishlist yet.</label>"
+								+ "<label class='col-form-label'>You have not placed any order to fulfill others wishlist.</label>"
 				         	 + "</div>";
 				$("#prod_details").append(no_items);
 				$("#no_items").show();
